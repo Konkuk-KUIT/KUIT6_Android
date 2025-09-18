@@ -1,6 +1,8 @@
 package com.kuit.kuit6android.ui.myeats.screen
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,5 +12,11 @@ fun MyEatsScreen(
     padding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    Text("MyEats Screen")
+    Column(
+        modifier = Modifier.padding(
+            padding
+        )
+    ) {
+        Text("MyEats Screen")
+    }
 }
