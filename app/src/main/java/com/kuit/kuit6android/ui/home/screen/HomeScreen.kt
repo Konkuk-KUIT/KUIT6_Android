@@ -1,0 +1,14 @@
+package com.kuit.kuit6android.ui.home.screen
+
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+
+@Composable
+fun HomeScreen(
+    padding: PaddingValues,
+    modifier: Modifier = Modifier
+) {
+    Text("Home Screen")
+}
