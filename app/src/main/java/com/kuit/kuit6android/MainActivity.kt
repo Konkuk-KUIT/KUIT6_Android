@@ -5,12 +5,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.kuit.kuit6android.navigation.BottomNavBar
+import com.kuit.kuit6android.navigation.BottomNavBarItem
+import com.kuit.kuit6android.navigation.MainNavHost
+import com.kuit.kuit6android.navigation.Route
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,16 +29,63 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KUIT6_ANDROIDTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                val navController = rememberNavController()
+
+                var currentIndex by remember { mutableIntStateOf(0) }
+                val navBarItems = listOf(
+                    BottomNavBarItem(
+                        label = "홈",
+                        route = Route.Home,
+                        icon = R.drawable.ic_home,
+                    ),
+                    BottomNavBarItem(
+                        label = "검색",
+                        route = Route.Search,
+                        icon = R.drawable.ic_search,
+                    ),
+                    BottomNavBarItem(
+                        label = "즐겨찾기",
+                        route = Route.Favorite,
+                        icon = R.drawable.ic_favorite,
+                    ),
+                    BottomNavBarItem(
+                        label = "주문내역",
+                        route = Route.OrderHistory,
+                        icon = R.drawable.ic_order_history,
+                    ),
+                    BottomNavBarItem(
+                        label = "My Eats",
+                        route = Route.MyEats,
+                        icon = R.drawable.ic_my_eats,
+                    ),
+                )
+
+                Scaffold(
+                    containerColor = Color.White,
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = {
+
+                        BottomNavBar(
+                            visible = true,
+                            items = navBarItems,
+                            currentIndex = currentIndex,
+                            onItemSelected = { index, item ->
+                                navController.navigate(item.route)
+                                currentIndex = index
+                            },
+                        )
+                    }
+                ) { innerPadding ->
+                    MainNavHost(
+                        padding = innerPadding,
+                        navController = navController
                     )
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
