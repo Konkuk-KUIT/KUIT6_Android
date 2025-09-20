@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,19 +20,35 @@ fun HomeScreen(
     padding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(
                 paddingValues = padding
             )
     ) {
-        GetCouponItem()
-        //여기를 레이지 컬럼으로 하라?
-        Column(modifier = modifier.padding(horizontal = 27.dp)) {
-            SearchTextField(modifier = modifier.padding(horizontal = 22.dp))
-            CategoryRow(modifier = modifier.fillMaxWidth())
-            CategoryRow(modifier = modifier.fillMaxWidth())
+        item {
+            GetCouponItem()
+
+        }
+//        item {
+//            Row {
+//                CityDropdown()
+//            }
+//        }
+        item {
+            SearchTextField(modifier = modifier.padding(start = 49.dp))
+
+        }
+        item {
+            //여기를 레이지 컬럼으로 하라?
+            Column(
+                modifier = modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                CategoryRow(modifier = modifier.fillMaxWidth())
+                CategoryRow(modifier = modifier.fillMaxWidth())
+            }
         }
     }
 }
