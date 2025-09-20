@@ -56,6 +56,10 @@ fun HomeScreen(
                 CategoryRow(modifier = modifier.fillMaxWidth())
             }
             MidBanner()
+//            MidBanner()
+//            MidBanner()
+//            MidBanner()
+//            MidBanner()
             Column(
                 modifier = modifier.padding(start = 27.dp)
             ) {

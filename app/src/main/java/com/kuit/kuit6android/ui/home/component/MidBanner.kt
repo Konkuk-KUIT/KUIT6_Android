@@ -80,7 +80,7 @@ fun MidBanner(modifier: Modifier = Modifier) {
                     )
                     .clickable(
                         onClick = {
-
+                            println("주문하러 가기 클릭됨!")
                         }
                     )
                     .background(
