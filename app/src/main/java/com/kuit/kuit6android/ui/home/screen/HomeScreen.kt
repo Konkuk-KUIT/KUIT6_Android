@@ -3,9 +3,11 @@ package com.kuit.kuit6android.ui.home.screen
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,11 +22,12 @@ fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
+//반드시 레이지여야 함
         modifier = Modifier
             .fillMaxSize()
             .padding(
                 paddingValues = padding
-            )
+            ),
     ) {
         item {
             GetCouponItem()
@@ -40,15 +43,17 @@ fun HomeScreen(
 
         }
         item {
-            CategoryRow()
-//            //여기를 레이지 컬럼으로 하라?
-//            Column(
-//                modifier = modifier.fillMaxWidth(),
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//                CategoryRow(modifier = modifier.fillMaxWidth())
-//                CategoryRow(modifier = modifier.fillMaxWidth())
-//            }
+            LazyColumn(//반드시 레이지여야 함
+                modifier = modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                item {
+                    CategoryRow(modifier = modifier.fillMaxWidth())
+                }
+                item {
+                    CategoryRow(modifier = modifier.fillMaxWidth())
+                }
+            }
         }
     }
 }
