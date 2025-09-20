@@ -1,5 +1,6 @@
 package com.kuit.kuit6android.ui.home.screen
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.kuit.kuit6android.ui.home.component.CategoryRow
 import com.kuit.kuit6android.ui.home.component.CityDropdown
 import com.kuit.kuit6android.ui.home.component.GetCouponItem
+import com.kuit.kuit6android.ui.home.component.MidBanner
 import com.kuit.kuit6android.ui.home.component.SearchTextField
 
 @Composable
@@ -31,29 +33,25 @@ fun HomeScreen(
     ) {
         item {
             GetCouponItem()
-
-        }
-        item {
-            Row {
+            Row(
+                modifier = modifier.padding(
+                    start = 27.dp,
+                    end = 27.dp,
+                    top = 20.dp,
+                    bottom = 31.dp
+                )
+            ) {
                 CityDropdown()
             }
-        }
-        item {
             SearchTextField(modifier = modifier.padding(start = 49.dp))
-
-        }
-        item {
-            LazyColumn(//반드시 레이지여야 함
+            Column(
                 modifier = modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                item {
-                    CategoryRow(modifier = modifier.fillMaxWidth())
-                }
-                item {
-                    CategoryRow(modifier = modifier.fillMaxWidth())
-                }
+                CategoryRow(modifier = modifier.fillMaxWidth())
+                CategoryRow(modifier = modifier.fillMaxWidth())
             }
+            MidBanner()
         }
     }
 }
