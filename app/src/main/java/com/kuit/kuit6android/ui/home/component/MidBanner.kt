@@ -34,6 +34,10 @@ fun MidBanner(modifier: Modifier = Modifier) {
     ) {
         Row(
             modifier = Modifier
+                .size(
+                    width = 306.dp,
+                    height = 77.dp
+                )
                 .background(
                     color = Color(color = 0xFF0C2F65),
                     shape = RoundedCornerShape(
@@ -56,13 +60,15 @@ fun MidBanner(modifier: Modifier = Modifier) {
                 Text(
                     text = "와우회원은 횟수 제한없이",
                     color = Color.White,
-                    fontSize = 11.sp
+                    fontSize = 11.sp,
+                    lineHeight = 13.sp
                 )
                 Text(
                     text = "매 주문 무료배달",
                     color = Color.White,
                     fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 18.sp
                 )
             }
             Text(
@@ -85,7 +91,8 @@ fun MidBanner(modifier: Modifier = Modifier) {
                 color = Color(color = 0xFF0C2F65),
                 textAlign = TextAlign.Center,
                 fontSize = 11.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                lineHeight = 13.sp
             )
         }
     }
