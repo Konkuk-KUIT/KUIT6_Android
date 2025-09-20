@@ -1,12 +1,9 @@
 package com.kuit.kuit6android.ui.home.component
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.home.data.CategoryData
 
@@ -19,11 +16,18 @@ fun CategoryRow(modifier: Modifier = Modifier) {
         CategoryData(imageId = R.drawable.chicken, category = "치킨"),
         CategoryData(imageId = R.drawable.snack_food, category = "분식"),
     )
-//    LazyRow(horizontalArrangement = Arrangement.spacedBy(space = 4.dp)) {
-    LazyRow(horizontalArrangement = Arrangement.spacedBy(space = 18.dp)) {
-        items(items = categoryList) { category ->
+////    LazyRow(horizontalArrangement = Arrangement.spacedBy(space = 4.dp)) {
+//    LazyRow(horizontalArrangement = Arrangement.spacedBy(space = 18.dp)) {
+//        items(items = categoryList) { category ->
+//            CategoryItem(
+//                categoryData = category
+//            )
+//        }
+//    }
+    Row {
+        categoryList.forEach {
             CategoryItem(
-                categoryData = category
+                categoryData = it
             )
         }
     }
