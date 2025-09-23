@@ -41,7 +41,7 @@ fun StoreItem(modifier: Modifier = Modifier, storeData: StoreData) {
             Spacer(Modifier.height(5.dp))
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = modifier.width(230.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -50,7 +50,7 @@ fun StoreItem(modifier: Modifier = Modifier, storeData: StoreData) {
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold
                 )
-                Spacer(Modifier.width(145.dp))
+
                 Text(
                     text = storeData.deliveryTime + "분",
                     fontSize = 12.sp

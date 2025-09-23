@@ -37,14 +37,14 @@ fun RecentMenu(modifier: Modifier = Modifier) {
             reviewCount = "3,849"
         ),
         StoreData(
-            imageId = R.drawable.img_food,
+            imageId = R.drawable.img_soup,
             name = "값찌개",
             deliveryTime = "41",
             score = "4.1",
             reviewCount = "1,544"
         ),
         StoreData(
-            imageId = R.drawable.img_food,
+            imageId = R.drawable.img_bhc,
             name = "BHC 건대점",
             deliveryTime = "50",
             score = "4.3",
