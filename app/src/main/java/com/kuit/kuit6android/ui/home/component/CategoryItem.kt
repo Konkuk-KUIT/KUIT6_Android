@@ -20,7 +20,8 @@ fun CategoryItem(modifier: Modifier = Modifier, categoryData: CategoryData) {
 
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.height(67.dp)
+        modifier = Modifier.height(68.dp),
+        userScrollEnabled = false
     ) {
         item {
             Image(
