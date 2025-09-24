@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -47,14 +48,15 @@ fun HomeScreen(
             ) { SearchTextField(modifier = modifier.padding(start = 49.dp)) } // 높이 55라 생각 20/15/20
         }
         item {
-            Column(
+            LazyColumn(
                 modifier = modifier
                     .fillMaxWidth()
+                    .height(148.dp) // 중첩 문제 -> 높이 설정
                     .padding(top = 6.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                CategoryRow(modifier = modifier.fillMaxWidth())
-                CategoryRow(modifier = modifier.fillMaxWidth())
+                item { CategoryRow(modifier = modifier.fillMaxWidth()) }
+                item { CategoryRow(modifier = modifier.fillMaxWidth()) }
             }
         }
         item {
