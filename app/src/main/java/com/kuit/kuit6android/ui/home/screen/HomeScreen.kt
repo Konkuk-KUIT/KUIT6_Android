@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kuit.kuit6android.ui.home.component.CategoryRow
 import com.kuit.kuit6android.ui.home.component.GetCouponItem
+import com.kuit.kuit6android.ui.home.component.GoOrderItem
 import com.kuit.kuit6android.ui.home.component.RegionSelectionRow
 import com.kuit.kuit6android.ui.home.component.SearchTextField
 
@@ -33,7 +34,8 @@ fun HomeScreen(
         item { SearchTextField(modifier = modifier.padding(start = 49.dp)) } // 높이 55라 생각 20/15/20
         item {
             Column(
-                modifier = modifier.fillMaxWidth()
+                modifier = modifier
+                    .fillMaxWidth()
                     .padding(top = 5.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -41,7 +43,16 @@ fun HomeScreen(
                 CategoryRow(modifier = modifier.fillMaxWidth())
             }
         }
-
+        item {
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = 14.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                GoOrderItem()
+            }
+        }
     }
 }
 
