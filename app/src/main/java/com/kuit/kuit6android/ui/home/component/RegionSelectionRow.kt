@@ -23,7 +23,6 @@ import com.kuit.kuit6android.R
 fun RegionSelectionRow(modifier: Modifier = Modifier) {
     var region by rememberSaveable { mutableStateOf("서울시 광진구 구의동") }
     Row(
-        modifier = modifier.padding(start = 27.dp, top = 20.dp, bottom = 11.dp), // HomeScreen에서 인자로 넘겨주니까 이상하게 돼서 여기에 넣어줌
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

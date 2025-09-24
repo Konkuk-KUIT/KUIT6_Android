@@ -30,13 +30,27 @@ fun HomeScreen(
             ),
     ) {
         item { GetCouponItem() }
-        item { RegionSelectionRow() }
-        item { SearchTextField(modifier = modifier.padding(start = 49.dp)) } // 높이 55라 생각 20/15/20
         item {
             Column(
                 modifier = modifier
                     .fillMaxWidth()
-                    .padding(top = 5.dp),
+                    .padding(top = 20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) { RegionSelectionRow() }
+        }
+        item {
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = 11.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) { SearchTextField(modifier = modifier.padding(start = 49.dp)) } // 높이 55라 생각 20/15/20
+        }
+        item {
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = 6.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CategoryRow(modifier = modifier.fillMaxWidth())
