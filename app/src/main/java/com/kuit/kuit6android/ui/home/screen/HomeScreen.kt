@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.kuit.kuit6android.ui.home.component.CategoryRow
 import com.kuit.kuit6android.ui.home.component.GetCouponItem
 import com.kuit.kuit6android.ui.home.component.GoOrderItem
+import com.kuit.kuit6android.ui.home.component.RecentlyViewedRow
 import com.kuit.kuit6android.ui.home.component.RegionSelectionRow
 import com.kuit.kuit6android.ui.home.component.SearchTextField
 
@@ -67,6 +68,16 @@ fun HomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 GoOrderItem()
+            }
+        }
+        item {
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                RecentlyViewedRow()
             }
         }
     }
