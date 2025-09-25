@@ -21,7 +21,7 @@ fun CategoryItem(modifier: Modifier = Modifier, categoryData: CategoryData) {
         modifier = modifier
     ) {
         Image(
-            painter = painterResource(categoryData.ImageId),
+            painter = painterResource(categoryData.imageId),
             contentDescription = categoryData.category,
             modifier = modifier.size(47.dp)
         )

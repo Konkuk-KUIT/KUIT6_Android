@@ -13,11 +13,11 @@ import com.kuit.kuit6android.ui.home.data.CategoryData
 @Composable
 fun CategoryRow(modifier: Modifier = Modifier) {
     val categoryList = listOf(
-        CategoryData(ImageId = R.drawable.img_pork_cutlet, "돈까스"),
-        CategoryData(ImageId = R.drawable.img_japanese, "일식"),
-        CategoryData(ImageId = R.drawable.img_korean, "한식"),
-        CategoryData(ImageId = R.drawable.img_chicken, "치킨"),
-        CategoryData(ImageId = R.drawable.img_snack, "분식"),
+        CategoryData(imageId = R.drawable.img_pork_cutlet, "돈까스"),
+        CategoryData(imageId = R.drawable.img_japanese, "일식"),
+        CategoryData(imageId = R.drawable.img_korean, "한식"),
+        CategoryData(imageId = R.drawable.img_chicken, "치킨"),
+        CategoryData(imageId = R.drawable.img_snack, "분식"),
     )
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(18.dp)

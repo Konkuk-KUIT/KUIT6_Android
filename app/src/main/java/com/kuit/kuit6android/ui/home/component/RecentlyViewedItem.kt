@@ -22,10 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
-import com.kuit.kuit6android.ui.home.data.restaurantData
+import com.kuit.kuit6android.ui.home.data.RestaurantData
 
 @Composable
-fun RecentlyViewedItem(modifier: Modifier = Modifier, restaurantData: restaurantData) {
+fun RecentlyViewedItem(modifier: Modifier = Modifier, restaurantData: RestaurantData) {
     Column(
         modifier = modifier.size(width = 231.dp, height = 176.dp)
     ) {
@@ -77,7 +77,7 @@ fun RecentlyViewedItem(modifier: Modifier = Modifier, restaurantData: restaurant
 @Preview(showBackground = true)
 @Composable
 private fun RecentItemPrev() {
-    RecentlyViewedItem(restaurantData = restaurantData(
+    RecentlyViewedItem(restaurantData = RestaurantData(
         imageId = R.drawable.img_ourddeokbokki,
         name = "아워떡볶이",
         time = "30분",

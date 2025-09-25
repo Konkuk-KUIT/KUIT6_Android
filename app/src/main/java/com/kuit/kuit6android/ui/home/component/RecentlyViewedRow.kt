@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -17,40 +15,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
-import com.kuit.kuit6android.ui.home.data.restaurantData
+import com.kuit.kuit6android.ui.home.data.RestaurantData
 
 @Composable
 fun RecentlyViewedRow(modifier: Modifier = Modifier) {
     val restaurantList = listOf(
-        restaurantData(
+        RestaurantData(
             imageId = R.drawable.img_ourddeokbokki,
             name = "아워떡볶이",
             time = "30분",
             rate = 4.9f,
             reviewNum = 3849
         ),
-        restaurantData(
+        RestaurantData(
             imageId = R.drawable.img_konoha,
             name = "코노하 건대점",
             time = "25분",
             rate = 4.9f,
             reviewNum = 2744
         ),
-        restaurantData(
+        RestaurantData(
             imageId = R.drawable.img_twozzim,
             name = "두찜 건대점",
             time = "30분",
             rate = 4.7f,
             reviewNum = 795
         ),
-        restaurantData(
+        RestaurantData(
             imageId = R.drawable.img_xihongshi,
             name = "시홍쓰",
             time = "40분",
             rate = 4.4f,
             reviewNum = 1143
         ),
-        restaurantData(
+        RestaurantData(
             imageId = R.drawable.img_opoke,
             name = "오포케",
             time = "15분",
