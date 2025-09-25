@@ -1,7 +1,9 @@
 package com.kuit.kuit6android.ui.home.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -17,7 +19,8 @@ import com.kuit.kuit6android.R
 @Composable
 fun Locate(modifier: Modifier = Modifier) {
     Row(verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.padding(start = 27.dp, end = 27.dp, top = 20.dp)
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier.padding(start = 27.dp, end = 27.dp, top = 20.dp).fillMaxWidth()
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
