@@ -5,5 +5,5 @@ data class RestaurantData (
     val name: String,
     val time: Int,
     val rating: Double,
-    val reviewCount: Int
+    val reviewCount: String
 )

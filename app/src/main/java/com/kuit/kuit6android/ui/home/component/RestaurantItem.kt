@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.home.data.RestaurantData
-import java.text.DecimalFormat
 
 @Composable
 fun RestaurantItem(
@@ -71,14 +70,16 @@ fun RestaurantItem(
                 modifier = modifier.size(15.dp)
             )
             Text(
-                text = "${restaurantData.rating.toString()} (${
-                    DecimalFormat("#,###").format(
-                        restaurantData.reviewCount
-                    )
-                })",
+                text = restaurantData.rating.toString(),
                 fontSize = 12.sp,
                 lineHeight = 14.sp
             )
+            Text(
+                text = restaurantData.reviewCount,
+                fontSize = 12.sp,
+                lineHeight = 14.sp
+            )
+
         }
     }
 }
