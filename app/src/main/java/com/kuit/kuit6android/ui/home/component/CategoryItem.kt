@@ -18,25 +18,21 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CategoryItem(modifier: Modifier = Modifier, categoryData: CategoryData) {
 
-    LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.height(68.dp), // LazyColumn의 높이를 지정해주지 않으면 오류가 발생해 높이 지정
-        userScrollEnabled = false
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
-            Image(
-                painter = painterResource(categoryData.imageId),
-                contentDescription = categoryData.category,
-                modifier = modifier.size(47.dp)
-            )
+        Image(
+            painter = painterResource(categoryData.imageId),
+            contentDescription = categoryData.category,
+            modifier = modifier.size(47.dp)
+        )
 
-            Text(
-                text = categoryData.category,
-                color = Color.Black,
-                fontSize = 11.sp,
-                modifier = modifier.padding(top = 4.dp)
-            )
-        }
-
+        Text(
+            text = categoryData.category,
+            color = Color.Black,
+            fontSize = 11.sp,
+            modifier = modifier.padding(top = 4.dp)
+        )
     }
+
 }
