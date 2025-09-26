@@ -20,7 +20,7 @@ fun CategoryItem(modifier: Modifier = Modifier, categoryData: CategoryData) {
 
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.height(68.dp),
+        modifier = Modifier.height(68.dp), // LazyColumn의 높이를 지정해주지 않으면 오류가 발생해 높이 지정
         userScrollEnabled = false
     ) {
         item {

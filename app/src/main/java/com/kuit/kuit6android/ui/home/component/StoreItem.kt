@@ -31,6 +31,7 @@ fun StoreItem(modifier: Modifier = Modifier, storeData: StoreData) {
         Column(
             modifier = modifier.padding(end = 27.dp)
         ) {
+            // 음식점 이미지
             Image(
                 painter = painterResource(storeData.imageId),
                 contentDescription = storeData.name,
@@ -40,7 +41,9 @@ fun StoreItem(modifier: Modifier = Modifier, storeData: StoreData) {
             )
             Spacer(Modifier.height(5.dp))
 
+            // 음식점 이름, 배달 시간 담은 Row
             Row(
+                // 너비 정해주고 -> Arrangement.SpaceBetween 하면 각각 끝에 배치 가능
                 modifier = modifier.width(230.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -48,28 +51,31 @@ fun StoreItem(modifier: Modifier = Modifier, storeData: StoreData) {
                 Text(
                     text = storeData.name,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 )
 
                 Text(
-                    text = storeData.deliveryTime + "분",
-                    fontSize = 12.sp
+                    text = "${storeData.deliveryTime}분",
+                    fontSize = 12.sp,
+                    color = Color.Black
                 )
             }
 
             Spacer(Modifier.height(10.dp))
+            // 별점, 리뷰 수를 담은 Row
             Row(
                 horizontalArrangement = Arrangement.spacedBy(5.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(R.drawable.img_star),
-                    contentDescription = "찜",
+                    contentDescription = "별점",
                     modifier = modifier
                         .size(15.dp)
                 )
                 Text(
-                    text = storeData.score + " (" + storeData.reviewCount + ")",
+                    text = "${storeData.score}" +  " (" + storeData.reviewCount + ")",
                     fontSize = 12.sp,
                     color = Color(0xFF575252)
                 )

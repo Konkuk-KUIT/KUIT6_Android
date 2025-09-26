@@ -23,15 +23,15 @@ fun HomeScreen(
     padding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(
+    LazyColumn( // 전체 화면 스크롤 가능하도록 LazyColumn 사용
         modifier = Modifier
             .fillMaxSize()
             .padding(
                 padding
             ),
     ) {
-        item { GetCouponItem() }
-        item {
+        item { GetCouponItem() } // 쿠폰 받기
+        item { // 위치 설정 및 알림
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = modifier
@@ -41,7 +41,9 @@ fun HomeScreen(
                 LocationSetting()
             }
         }
+        // 검색 창
         item { SearchTextField(modifier = modifier.padding(start = 49.dp)) }
+        // 카테고리
         item {
             Column(
                 modifier = modifier.fillMaxWidth(),
@@ -51,14 +53,18 @@ fun HomeScreen(
                 CategoryRow(modifier = modifier.padding(bottom = 14.dp))
             }
         }
+        // 광고 배너
         item {
             Column(
-                modifier = modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp, bottom = 24.dp)
             ) {
                 AdvertiseItem()
             }
         }
+        // 최근 본 맛집
         item {
             Column(
                 modifier = modifier.padding(start = 27.dp)

@@ -26,6 +26,7 @@ fun SearchTextField(modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
+        // 화면 상태가 바껴도 값 유지
         var content by rememberSaveable() { mutableStateOf("") }
         Icon(
             painter = painterResource(id = R.drawable.ic_search),

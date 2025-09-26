@@ -28,60 +28,54 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun AdvertiseItem(modifier: Modifier = Modifier) {
+
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(bottom = 24.dp),
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier
+            .size(width = 306.dp, height = 77.dp)
+            .clip(shape = RoundedCornerShape(8.dp))
+            .background(color = Color(0xFF0C2F65))
+            .padding(start = 81.dp, end = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(space = 15.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .size(width = 306.dp, height = 77.dp)
-                .clip(shape = RoundedCornerShape(8.dp))
-                .background(color = Color(0xFF0C2F65))
-                .padding(start = 81.dp, end = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(space = 18.dp)
-        ) {
-                Column {
-                    Text(
-                        text = "와우회원은 횟수 제한없이",
-                        color = Color.White,
-                        fontSize = 11.sp,
-                    )
-                    Text(
-                        text = "매 주문 무료배달",
-                        color = Color.White,
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-
-
-                Button(
-                    //modifier = modifier.padding(top = 6.dp, bottom = 6.dp, start = 12.dp, end = 12.dp),
-                    onClick = {},
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = Color(0xFF0C2F65),
-                        containerColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(4.dp),
-                    contentPadding = PaddingValues(   // 기본값 대신 직접 설정
-                        start = 11.dp,
-                        top = 6.dp,
-                        end = 11.dp,
-                        bottom = 6.dp
-                    )
-                ){
-                    Text(
-                        text = "주문하러 가기",
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-
+        Column {
+            Text(
+                text = "와우회원은 횟수 제한없이",
+                color = Color.White,
+                fontSize = 11.sp,
+            )
+            Text(
+                text = "매 주문 무료배달",
+                color = Color.White,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+            )
         }
+
+
+        Button(
+            onClick = {},
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Color(0xFF0C2F65),
+                containerColor = Color.White
+            ),
+            shape = RoundedCornerShape(4.dp),
+            contentPadding = PaddingValues(
+                start = 7.dp,
+                top = 6.dp,
+                end = 6.dp,
+                bottom = 6.dp
+            )
+        ) {
+            Text(
+                text = "주문하러 가기",
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
     }
+
 }
 
 @Preview(showBackground = true)

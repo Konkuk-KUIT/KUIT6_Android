@@ -23,6 +23,7 @@ fun CategoryRow(modifier: Modifier = Modifier) {
             modifier = modifier,
             horizontalArrangement = Arrangement.spacedBy(18.dp)
         ) {
+        // categoryList에 있는 CategoryData 값들을 CategoryItem 함수의 categoryDate 매개변수로 넘김
         items(categoryList) { category ->
             CategoryItem(categoryData = category)
         }

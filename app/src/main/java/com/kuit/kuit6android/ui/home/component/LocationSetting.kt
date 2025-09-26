@@ -25,12 +25,14 @@ import com.kuit.kuit6android.R
 
 @Composable
 fun LocationSetting(modifier: Modifier = Modifier) {
+    // Row 안에 이미지, 텍스트, 이미지 포함
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.width(306.dp)
     ) {
-        var content by rememberSaveable { mutableStateOf("") }
+
         Row(
+            // 알림 이미지 제왜한 Row의 남은 공간 차지
             modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -42,8 +44,8 @@ fun LocationSetting(modifier: Modifier = Modifier) {
             Spacer(Modifier.width(12.dp))
             Text(
                 text = "서울시 광진구 구의동",
-                fontSize = 15.sp
-
+                fontSize = 15.sp,
+                color = Color.Black
             )
             Spacer(Modifier.width(9.dp))
             Icon(
