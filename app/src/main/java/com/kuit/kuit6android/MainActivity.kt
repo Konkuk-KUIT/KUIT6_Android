@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.navigation.BottomNavBar
 import com.kuit.kuit6android.navigation.MainNavHost
 import com.kuit.kuit6android.navigation.NavTab
+import com.kuit.kuit6android.navigation.Route
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
 
 class MainActivity : ComponentActivity() {
@@ -67,20 +68,21 @@ class MainActivity : ComponentActivity() {
                     containerColor = Color.White,
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
-
-                        BottomNavBar(
-                            visible = true,
-                            tabs = NavTab.entries,
-                            currentTab = currentTab,
-                            onItemSelected = { tab ->
-                                navController.navigate(route = tab.route) {
-                                    popUpTo(route = tab.route) {
-                                        inclusive = true
+                        if (currentDestination?.hasRoute(Route.Favorite::class) != true) {
+                            BottomNavBar(
+                                visible = true,
+                                tabs = NavTab.entries,
+                                currentTab = currentTab,
+                                onItemSelected = { tab ->
+                                    navController.navigate(route = tab.route) {
+                                        popUpTo(route = tab.route) {
+                                            inclusive = true
+                                        }
+                                        launchSingleTop = true
                                     }
-                                    launchSingleTop = true
-                                }
-                            },
-                        )
+                                },
+                            )
+                        }
                     }
                 ) { innerPadding ->
                     MainNavHost(

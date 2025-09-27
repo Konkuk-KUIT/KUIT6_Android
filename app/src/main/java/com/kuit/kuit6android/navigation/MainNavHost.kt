@@ -55,8 +55,16 @@ fun MainNavHost(
         composable<Route.Favorite> {
             FavoriteScreen(
                 padding = padding,
+                onNavigateToDetailPage = { selectedRestaurant ->
+                    navController.navigate(
+                        route = Route.FavoriteDetail(
+                            restaurantData = selectedRestaurant
+                        )
+                    )
+                }
             )
         }
+
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
                 padding = padding,

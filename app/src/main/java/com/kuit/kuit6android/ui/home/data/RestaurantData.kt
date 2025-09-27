@@ -1,7 +1,9 @@
 package com.kuit.kuit6android.ui.home.data
 
 import com.kuit.kuit6android.R
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class RestaurantData(
     val imageId: Int = R.drawable.chicken,
     val name: String = "맛집명",

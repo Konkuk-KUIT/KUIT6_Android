@@ -1,6 +1,7 @@
 package com.kuit.kuit6android.ui.favorite.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,28 +12,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.home.component.recentrestaurant.MockData
 import com.kuit.kuit6android.ui.home.component.recentrestaurant.RestaurantItem
+import com.kuit.kuit6android.ui.home.data.RestaurantData
 
 @Composable
 fun FavoriteScreen(
     padding: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateToDetailPage: (RestaurantData) -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxSize()
@@ -49,39 +46,7 @@ fun FavoriteScreen(
                     height = 20.dp
                 )
             )
-            Row(
-                modifier = modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    painter = painterResource(
-                        id = R.drawable.ic_back_arrow2
-                    ),
-                    contentDescription = "뒤로가기 화살표"
-                )
-                Spacer(
-                    modifier = Modifier.width(
-                        width = 27.dp
-                    )
-                )
-                Text(
-                    text = "즐겨찾기",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal
-                )
-                Spacer(
-                    modifier = Modifier.weight(
-                        weight = 1.0f
-                    )
-                )
-                Text(
-                    text = "수정",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color(color = 0xFF02AFFE)
-                )
-            }
+            FavoriteTopBar(modifier)
 
             Spacer(
                 modifier = Modifier.height(
@@ -130,21 +95,19 @@ fun FavoriteScreen(
                 items = MockData.restaurantList
             ) {
                 RestaurantItem(
-                    modifier = modifier.size(
-                        width = 306.dp,
-                        height = 176.dp
-                    ),
+                    modifier = modifier
+                        .size(
+                            width = 306.dp,
+                            height = 176.dp
+                        )
+                        .clickable(
+                            onClick = {
+                                onNavigateToDetailPage(it)
+                            }
+                        ),
                     restaurantData = it
                 )
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun FavoritePreview() {
-    FavoriteScreen(
-        padding = PaddingValues()
-    )
 }
