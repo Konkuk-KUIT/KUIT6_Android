@@ -65,6 +65,9 @@ fun MainNavHost(
         composable<Route.MyEats> {
             MyEatsScreen(
                 padding = padding,
+                onNavigateToFavorite = {
+                    navController.navigate(Route.Favorite)
+                }
             )
         }
     }

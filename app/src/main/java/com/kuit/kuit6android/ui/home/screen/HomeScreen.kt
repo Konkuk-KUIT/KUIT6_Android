@@ -79,7 +79,7 @@ fun HomeScreen(
             }
             Spacer(
                 Modifier.height(
-                    height = 20.dp
+                    height = 24.dp
                 )
             )
             Column(
@@ -92,6 +92,13 @@ fun HomeScreen(
                     fontSize = 17.sp,
                     lineHeight = 20.sp
                 )
+
+                Spacer(
+                    Modifier.height(
+                        height = 25.dp
+                    )
+                )
+
                 RecentRestaurantRow()
             }
         }

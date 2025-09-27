@@ -2,7 +2,7 @@ package com.kuit.kuit6android.ui.home.data
 
 import com.kuit.kuit6android.R
 
-data class RecentRestaurantData(
+data class RestaurantData(
     val imageId: Int = R.drawable.chicken,
     val name: String = "맛집명",
     val time: Int = 123,
