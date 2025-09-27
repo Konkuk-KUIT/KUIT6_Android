@@ -11,10 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.navigation.BottomNavBar
 import com.kuit.kuit6android.navigation.MainNavHost
+import com.kuit.kuit6android.navigation.NavTab
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,6 +29,9 @@ class MainActivity : ComponentActivity() {
 
                 val currentDestination =
                     navController.currentBackStackEntryAsState().value?.destination
+
+                val currentTab: NavTab? =
+                    NavTab.entries.find { tab -> currentDestination?.hasRoute(route = tab.route::class) == true }
 
 
 //                var currentIndex by remember { mutableIntStateOf(0) }
@@ -65,11 +70,15 @@ class MainActivity : ComponentActivity() {
 
                         BottomNavBar(
                             visible = true,
-                            items = navBarItems,
-                            currentIndex = currentIndex,
-                            onItemSelected = { index, item ->
-                                navController.navigate(item.route)
-                                currentIndex = index
+                            tabs = NavTab.entries,
+                            currentTab = currentTab,
+                            onItemSelected = { tab ->
+                                navController.navigate(route = tab.route) {
+                                    popUpTo(route = tab.route) {
+                                        inclusive = true
+                                    }
+                                    launchSingleTop = true
+                                }
                             },
                         )
                     }
