@@ -3,7 +3,6 @@ package com.kuit.kuit6android.ui.home.component.recentrestaurant
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,7 +26,7 @@ import com.kuit.kuit6android.ui.home.data.RestaurantData
 import java.text.DecimalFormat
 
 @Composable
-fun RecentRestaurantItem(
+fun RestaurantItem(
     modifier: Modifier = Modifier,
     restaurantData: RestaurantData
 ) {
@@ -75,21 +74,23 @@ fun RecentRestaurantItem(
         }
 
         Spacer(
-            modifier = modifier.height(
-                height = 10.dp
+            modifier = modifier.weight(
+                weight = 1.0f
             )
         )
 
         Row(
-            modifier.height(IntrinsicSize.Min),
             horizontalArrangement = Arrangement.spacedBy(5.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(
-                    id = R.drawable.star
+                    id = R.drawable.icon_star
                 ),
-                contentDescription = "Rating star"
+                contentDescription = "Rating star",
+                modifier = modifier.size(
+                    size = 15.dp
+                )
             )
             Text(
                 text = "${restaurantData.rating.toString()} (${
@@ -109,7 +110,7 @@ fun RecentRestaurantItem(
 @Preview(showBackground = true)
 @Composable
 private fun RecentRestaurantItemPreview() {
-    RecentRestaurantItem(
+    RestaurantItem(
         restaurantData = RestaurantData()
     )
 }

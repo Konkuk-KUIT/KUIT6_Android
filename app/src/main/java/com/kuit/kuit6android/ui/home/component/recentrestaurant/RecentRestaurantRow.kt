@@ -20,7 +20,7 @@ fun RecentRestaurantRow(
         horizontalArrangement = Arrangement.spacedBy(space = 21.dp)
     ) {
         items(items = MockData.restaurantList) {
-            RecentRestaurantItem(
+            RestaurantItem(
                 restaurantData = it
             )
         }
