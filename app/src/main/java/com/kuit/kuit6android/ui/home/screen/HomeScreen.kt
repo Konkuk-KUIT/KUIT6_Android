@@ -1,10 +1,13 @@
 package com.kuit.kuit6android.ui.home.screen
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
@@ -28,12 +31,12 @@ fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
-//반드시 레이지여야 함
         modifier = Modifier
             .fillMaxSize()
             .padding(
                 paddingValues = padding
             ),
+//        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
             GetCouponItem()
@@ -55,13 +58,33 @@ fun HomeScreen(
                 CategoryRow(modifier = modifier.fillMaxWidth())
                 CategoryRow(modifier = modifier.fillMaxWidth())
             }
-            MidBanner()
-//            MidBanner()
-//            MidBanner()
-//            MidBanner()
-//            MidBanner()
+            Spacer(
+                Modifier.height(
+                    height = 20.dp
+                )
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+//                    .padding(vertical = 20.dp) 대신 위 아래 스페이서
+                ,
+                contentAlignment = Alignment.Center
+            ) {
+                MidBanner(
+//                    modifier = modifier
+//                    .padding(vertical = 20.dp)
+//                    .align() 박스 컬럼 로우 레이아웃
+//                    레이지 안에는 얼라인 없음
+                )
+            }
+            Spacer(
+                Modifier.height(
+                    height = 20.dp
+                )
+            )
             Column(
-                modifier = modifier.padding(start = 27.dp)
+                modifier = modifier
+                    .padding(start = 27.dp)
             ) {
                 Text(
                     text = "최근 본 맛집",
