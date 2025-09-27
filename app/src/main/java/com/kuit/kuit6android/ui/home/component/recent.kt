@@ -25,33 +25,33 @@ import com.kuit.kuit6android.R
 
 @Composable
 fun recent(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.padding(top = 451.dp)) {
+    Column(modifier = Modifier) {
         Text(
             text = "최근 본 맛집",
             fontSize = 17.sp,
             fontWeight = FontWeight.Bold,
-            modifier = modifier.padding(start = 25.dp)
+            modifier = Modifier.padding(start = 25.dp)
         )
 
         LazyRow(
-            modifier = modifier.padding(start = 25.dp, top = 25.dp),
+            modifier = Modifier.padding(start = 25.dp, top = 25.dp),
             horizontalArrangement = Arrangement.spacedBy(21.dp)
         ) {
             item {
                 Column(
-                    modifier = modifier.padding(end = 27.dp)
+                    modifier = Modifier.padding(end = 27.dp)
                 ) {
                     Image(
                         painter = painterResource(R.drawable.image),
                         contentDescription = "최근 식당",
-                        modifier = modifier
+                        modifier = Modifier
                             .width(230.dp)
                             .height(129.dp)
                     )
                 }
 
                 Row(
-                    modifier.fillMaxWidth()
+                    Modifier.fillMaxWidth()
                 ) {
                     Text(
                         text = "아워 떡볶이",
@@ -70,7 +70,7 @@ fun recent(modifier: Modifier = Modifier) {
                     Image(
                         painter = painterResource(R.drawable.star),
                         contentDescription = "찜",
-                        modifier = modifier.size(15.dp)
+                        modifier = Modifier.size(15.dp)
                     )
                     Text(
                         text = "4.9 (3,849)",

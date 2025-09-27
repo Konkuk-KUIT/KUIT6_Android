@@ -25,8 +25,7 @@ fun Location(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .padding(horizontal = 27.dp)
-            .width(306.dp)
-            .height(24.dp),
+            .width(306.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

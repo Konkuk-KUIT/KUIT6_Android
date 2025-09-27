@@ -29,7 +29,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 45.dp)
+            .padding(top = 62.dp)
     ) {
         Location(modifier = modifier.padding(top = 10.dp))
     }
@@ -50,12 +50,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Advertise()
-    }
-
-    Column(
-        modifier = modifier.padding(start = 27.dp)
-    ) {
-        recent()
+        recent(modifier = Modifier.padding(top = 25.dp))
     }
 }
 
