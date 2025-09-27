@@ -10,10 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.kuit.kuit6android.ui.home.component.recentrestaurant.MockData
 
 @Composable
-fun FavoriteHeader(modifier: Modifier) {
+fun FavoriteHeader(
+    modifier: Modifier,
+    navController: NavController
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -26,7 +30,10 @@ fun FavoriteHeader(modifier: Modifier) {
                 height = 20.dp
             )
         )
-        FavoriteTopBar(modifier)
+        FavoriteTopBar(
+            modifier,
+            navController = navController
+        )
 
         Spacer(
             modifier = Modifier.height(

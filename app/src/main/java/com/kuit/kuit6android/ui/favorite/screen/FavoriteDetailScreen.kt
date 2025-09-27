@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.navigation.Route
 import com.kuit.kuit6android.ui.components.RestaurantRating
@@ -21,7 +22,8 @@ import com.kuit.kuit6android.ui.components.RestaurantRating
 @Composable
 fun FavoriteDetailScreen(
     modifier: Modifier = Modifier,
-    detail: Route.FavoriteDetail
+    detail: Route.FavoriteDetail,
+    navController: NavController
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -33,7 +35,9 @@ fun FavoriteDetailScreen(
             )
         )
 
-        FavoriteDetailTopBar()
+        FavoriteDetailTopBar(
+            navController = navController
+        )
 
         Spacer(
             modifier = Modifier.height(
@@ -87,7 +91,7 @@ private fun FavoriteDetailScreenPreview() {
         restaurantImageId = R.drawable.restaurant
     )
 
-    FavoriteDetailScreen(
-        detail = mockDetail
-    )
+//    FavoriteDetailScreen(
+//        detail = mockDetail
+//    )
 }

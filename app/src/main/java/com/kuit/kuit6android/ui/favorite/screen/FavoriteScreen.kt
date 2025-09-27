@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.kuit.kuit6android.ui.home.component.recentrestaurant.MockData
 import com.kuit.kuit6android.ui.home.component.recentrestaurant.RestaurantItem
 import com.kuit.kuit6android.ui.home.data.RestaurantData
@@ -26,12 +27,16 @@ import com.kuit.kuit6android.ui.home.data.RestaurantData
 fun FavoriteScreen(
     padding: PaddingValues,
     modifier: Modifier = Modifier,
-    onNavigateToDetailPage: (RestaurantData) -> Unit
+    onNavigateToDetailPage: (RestaurantData) -> Unit,
+    navController: NavController
 ) {
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        FavoriteHeader(modifier)
+        FavoriteHeader(
+            modifier = modifier,
+            navController = navController
+        )
 
         Row(
             modifier = modifier

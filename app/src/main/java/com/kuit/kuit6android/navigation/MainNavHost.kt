@@ -65,14 +65,16 @@ fun MainNavHost(
                             restaurantReviewerCount = restaurant.reviewerCount
                         )
                     )
-                }
+                },
+                navController = navController
             )
         }
 
         composable<Route.FavoriteDetail> { navBackStackEntry ->
             val restaurantDetails = navBackStackEntry.toRoute<Route.FavoriteDetail>()
             FavoriteDetailScreen(
-                detail = restaurantDetails
+                detail = restaurantDetails,
+                navController = navController
             )
         }
 

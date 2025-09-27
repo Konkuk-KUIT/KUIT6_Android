@@ -13,12 +13,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.kuit.kuit6android.R
 
 @Composable
-fun FavoriteTopBar(modifier: Modifier) {
+fun FavoriteTopBar(
+    modifier: Modifier = Modifier,
+    navController: NavController
+) {
     Row(
         modifier = modifier
             .fillMaxWidth(),
@@ -32,6 +37,7 @@ fun FavoriteTopBar(modifier: Modifier) {
             modifier = modifier.clickable(
                 onClick = {
                     println("즐겨찾기에서 뒤로가기 클릭")
+                    navController.popBackStack()
                 }
             )
         )
@@ -62,4 +68,10 @@ fun FavoriteTopBar(modifier: Modifier) {
             )
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun FavoriteTopBarPreview() {
+//    FavoriteTopBar()
 }
