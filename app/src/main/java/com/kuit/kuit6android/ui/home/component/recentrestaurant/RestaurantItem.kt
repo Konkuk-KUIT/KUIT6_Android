@@ -31,10 +31,11 @@ fun RestaurantItem(
     restaurantData: RestaurantData
 ) {
     Column(
-        modifier = modifier.size(
-            width = 231.dp,
-            height = 176.dp
-        )
+//        modifier = modifier.size(
+//            width = 231.dp,
+//            height = 176.dp
+//        )
+        modifier = modifier
     ) {
         Image(
             painter = painterResource(
@@ -42,7 +43,7 @@ fun RestaurantItem(
             ),
             contentDescription = "Recent restaurant",
             contentScale = ContentScale.Crop,
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(
                     height = 129.dp
@@ -51,14 +52,14 @@ fun RestaurantItem(
         )
 
         Spacer(
-            modifier = modifier.height(
+            modifier = Modifier.height(
                 height = 5.dp
             )
         )
 
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = restaurantData.name,
@@ -74,7 +75,7 @@ fun RestaurantItem(
         }
 
         Spacer(
-            modifier = modifier.weight(
+            modifier = Modifier.weight(
                 weight = 1.0f
             )
         )
@@ -88,7 +89,7 @@ fun RestaurantItem(
                     id = R.drawable.icon_star
                 ),
                 contentDescription = "Rating star",
-                modifier = modifier.size(
+                modifier = Modifier.size(
                     size = 15.dp
                 )
             )

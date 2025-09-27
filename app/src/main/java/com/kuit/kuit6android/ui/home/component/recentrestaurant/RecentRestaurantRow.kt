@@ -2,6 +2,7 @@ package com.kuit.kuit6android.ui.home.component.recentrestaurant
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -21,7 +22,11 @@ fun RecentRestaurantRow(
     ) {
         items(items = MockData.restaurantList) {
             RestaurantItem(
-                restaurantData = it
+                restaurantData = it,
+                modifier = modifier.size(
+                    width = 231.dp,
+                    height = 176.dp
+                )
             )
         }
     }
