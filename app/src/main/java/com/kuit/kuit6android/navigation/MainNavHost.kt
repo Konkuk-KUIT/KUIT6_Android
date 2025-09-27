@@ -56,10 +56,13 @@ fun MainNavHost(
         composable<Route.Favorite> {
             FavoriteScreen(
                 padding = padding,
-                onNavigateToDetailPage = { selectedRestaurant ->
+                onNavigateToDetailPage = { restaurant ->
                     navController.navigate(
                         route = Route.FavoriteDetail(
-                            restaurantData = selectedRestaurant
+                            restaurantImageId = restaurant.imageId,
+                            restaurantName = restaurant.name,
+                            restaurantRating = restaurant.rating,
+                            restaurantReviewerCount = restaurant.reviewerCount
                         )
                     )
                 }
@@ -67,9 +70,9 @@ fun MainNavHost(
         }
 
         composable<Route.FavoriteDetail> { navBackStackEntry ->
-            val restaurantData = navBackStackEntry.toRoute<Route.FavoriteDetail>().restaurantData
+            val restaurantDetails = navBackStackEntry.toRoute<Route.FavoriteDetail>()
             FavoriteDetailScreen(
-                restaurantData = restaurantData
+                detail = restaurantDetails
             )
         }
 
