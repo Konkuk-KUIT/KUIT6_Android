@@ -7,22 +7,18 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kuit.kuit6android.R
+import com.kuit.kuit6android.ui.components.RestaurantRating
 import com.kuit.kuit6android.ui.home.data.RestaurantData
-import java.text.DecimalFormat
 
 @Composable
 fun RestaurantItem(
@@ -79,30 +75,10 @@ fun RestaurantItem(
             )
         )
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(5.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(
-                    id = R.drawable.icon_star
-                ),
-                contentDescription = "Rating star",
-                modifier = Modifier.size(
-                    size = 15.dp
-                )
-            )
-            Text(
-                text = "${restaurantData.rating.toString()} (${
-                    DecimalFormat("#,###").format(
-                        restaurantData.reviewerCount
-                    )
-                })",
-                fontSize = 12.sp,
-                color = Color(
-                    color = 0xFF575252
-                )
-            )
-        }
+        RestaurantRating(
+            arrangementSpace = 5.dp,
+            restaurantReviewCnt = restaurantData.reviewerCount,
+            restaurantRating = restaurantData.rating
+        )
     }
 }

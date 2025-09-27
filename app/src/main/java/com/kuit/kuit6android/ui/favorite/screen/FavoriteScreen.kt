@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,13 +13,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.ui.home.component.recentrestaurant.MockData
 import com.kuit.kuit6android.ui.home.component.recentrestaurant.RestaurantItem
 import com.kuit.kuit6android.ui.home.data.RestaurantData
@@ -34,37 +31,7 @@ fun FavoriteScreen(
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    horizontal = 27.dp
-                )
-        ) {
-            Spacer(
-                modifier = Modifier.height(
-                    height = 20.dp
-                )
-            )
-            FavoriteTopBar(modifier)
-
-            Spacer(
-                modifier = Modifier.height(
-                    height = 58.dp
-                )
-            )
-
-            Text(
-                text = "총 ${MockData.restaurantList.size}개",
-                fontSize = 20.sp
-            )
-
-            Spacer(
-                modifier = Modifier.height(
-                    height = 24.dp
-                )
-            )
-        }
+        FavoriteHeader(modifier)
 
         Row(
             modifier = modifier
@@ -76,10 +43,9 @@ fun FavoriteScreen(
                     color = Color(
                         color = 0xFFF7F8F8
                     )
-                ),
-        ) {
+                )
+        ) {}
 
-        }
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -111,3 +77,4 @@ fun FavoriteScreen(
         }
     }
 }
+
