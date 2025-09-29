@@ -61,11 +61,12 @@ fun RecentMenu(modifier: Modifier = Modifier) {
 
 
     LazyRow(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(21.dp)
+        modifier = modifier
+            .padding(end = 27.dp),
+        horizontalArrangement = Arrangement.spacedBy(21.dp),
     ) {
         items(storeList) { store ->
-            StoreItem(storeData = store)
+            StoreItem(Modifier, 230, 130, storeData = store)
         }
     }
 

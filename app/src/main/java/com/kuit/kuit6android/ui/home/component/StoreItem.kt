@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -24,12 +25,12 @@ import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
 
 @Composable
-fun StoreItem(modifier: Modifier = Modifier, storeData: StoreData) {
+fun StoreItem(modifier: Modifier = Modifier, width: Int, height: Int, storeData: StoreData) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(
-            modifier = modifier.padding(end = 27.dp)
+
         ) {
             // 음식점 이미지
             Image(
@@ -37,14 +38,15 @@ fun StoreItem(modifier: Modifier = Modifier, storeData: StoreData) {
                 contentDescription = storeData.name,
                 modifier = modifier
                     .clip(RoundedCornerShape(8.dp))
-                    .size(width = 230.dp, height = 129.dp)
+                    .size(height = height.dp, width = width.dp),
+                contentScale = ContentScale.Crop
             )
             Spacer(Modifier.height(5.dp))
 
             // 음식점 이름, 배달 시간 담은 Row
             Row(
                 // 너비 정해주고 -> Arrangement.SpaceBetween 하면 각각 끝에 배치 가능
-                modifier = modifier.width(230.dp),
+                modifier = modifier.width(width.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
