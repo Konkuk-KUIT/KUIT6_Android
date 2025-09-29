@@ -5,10 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
+import androidx.navigation.toRoute
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
+import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
 
 @Composable
@@ -25,10 +28,23 @@ fun MainNavHost(
                 padding = padding,
             )
         }
-        composable<Route.Search> {
-            SearchScreen(
-                padding = padding,
-            )
+        navigation<Route.SearchNestedGraphRoute>(
+            startDestination = Route.Search // 필수
+        ) {
+            composable<Route.Search> {
+                SearchScreen(
+                    padding = padding,
+                    {
+                        navController.navigate(Route.SearchResult(searchKeyword = it))
+                    }
+                )
+            }
+
+            composable<Route.SearchResult> { navBackStackEntry ->
+                val keyeord = navBackStackEntry.toRoute<Route.SearchResult>().searchKeyword
+                SearchResultScreen(padding = padding,
+                    searchKeyword = keyeord)
+            }
         }
         composable<Route.Favorite> {
             FavoriteScreen(
