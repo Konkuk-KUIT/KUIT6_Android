@@ -20,6 +20,13 @@ object StoreFactory {
                 time = "30분",
                 star = 4.9,
                 commentCount = 3849
+            ),
+            Store(
+                name = "아워떡볶이",
+                img = ImageResource.Resource(R.drawable.storeexample),
+                time = "30분",
+                star = 4.9,
+                commentCount = 3849
             )
         )
     }
