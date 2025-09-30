@@ -13,17 +13,27 @@ import com.kuit.kuit6android.model.factory.StoreFactory
 import com.kuit.kuit6android.ui.components.home.StoreComponent
 
 @Composable
-fun StoreListComponent(storeList : List<Store>, modifier: Modifier = Modifier){
-    LazyColumn(modifier = Modifier.then(modifier),
-        verticalArrangement = Arrangement.spacedBy(20.dp)) {
-        items(storeList){ store ->
-            StoreComponent(store, modifier = Modifier.size(width = 306.dp, height = 129.dp))
+fun StoreListComponent(
+    storeList: List<Store>,
+    onStoreClick: (Store) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
+        modifier = Modifier.then(modifier),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        items(storeList) { store ->
+            StoreComponent(
+                store = store,
+                modifier = Modifier.size(width = 306.dp, height = 129.dp),
+                onClick = { onStoreClick(store) }
+            )
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun StoreListComponentPreview(){
-    StoreListComponent(StoreFactory.getStoreList())
+private fun StoreListComponentPreview() {
+    StoreListComponent(StoreFactory.getStoreList(), {})
 }

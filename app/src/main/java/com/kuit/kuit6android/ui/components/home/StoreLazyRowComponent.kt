@@ -14,7 +14,7 @@ import com.kuit.kuit6android.model.factory.StoreFactory
 fun StoreLazyRowComponent(modifier: Modifier = Modifier) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(21.dp), modifier = modifier) {
         items(StoreFactory.getStoreList()) { store ->
-            StoreComponent(store, modifier = Modifier.size(width = 230.dp, height = 129.dp))
+            StoreComponent(store, onClick = {} ,modifier = Modifier.size(width = 230.dp, height = 129.dp))
         }
     }
 }

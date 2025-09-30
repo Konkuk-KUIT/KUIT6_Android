@@ -1,15 +1,29 @@
 package com.kuit.kuit6android.navigation
 
+import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.kuit.kuit6android.ui.detail.screen.DetailPage
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
+import com.kuit.kuit6android.viewmodel.favorite.FavoriteViewModel
+import com.kuit.kuit6android.viewmodel.favorite.StoreCache
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @Composable
 fun MainNavHost(
@@ -31,9 +45,31 @@ fun MainNavHost(
             )
         }
         composable<Route.Favorite> {
-            FavoriteScreen(
-                padding = padding,
-            )
+            val viewModel: FavoriteViewModel = viewModel()
+
+            LaunchedEffect(Unit) {
+                viewModel.navigateToDetail.collect { store ->
+                    Log.d("NavGraph", "Navigating to detail/$id")
+                    navController.navigate("detail/${store.id}")
+                }
+            }
+
+
+            FavoriteScreen(padding = padding, viewModel = viewModel)
+        }
+        composable(
+            Route.Detail.routeWithArg,
+            arguments = listOf(navArgument("storeId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val storeId = backStackEntry.arguments?.getString("storeId")
+            val store = StoreCache.get(storeId)
+
+            if (store == null) {
+                Log.e("Nav", "Invalid storeId: $storeId")
+                navController.popBackStack() // 또는 Navigate to ErrorPage
+                return@composable
+            }
+            DetailPage(store = store)
         }
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
@@ -43,6 +79,9 @@ fun MainNavHost(
         composable<Route.MyEats> {
             MyEatsScreen(
                 padding = padding,
+                clickedFavoriteNavigate = {
+                    navController.navigate(Route.Favorite)
+                }
             )
         }
     }

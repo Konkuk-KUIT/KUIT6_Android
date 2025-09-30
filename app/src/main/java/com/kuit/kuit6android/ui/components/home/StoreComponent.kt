@@ -1,6 +1,7 @@
 package com.kuit.kuit6android.ui.components.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,25 +24,27 @@ import com.kuit.kuit6android.model.Store
 import com.kuit.kuit6android.ui.theme.Pretendard
 
 @Composable
-fun StoreComponent(store : Store, modifier: Modifier = Modifier){
+fun StoreComponent(store: Store, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Column {
         when (val img = store.img) {
             is ImageResource.Resource -> Image(
                 painter = painterResource(img.resId),
                 contentScale = ContentScale.Crop,
                 contentDescription = store.name,
-                modifier = modifier
+                modifier = modifier.clickable { onClick() }
             )
 
             is ImageResource.Url -> AsyncImage(
                 model = img.url,
                 contentDescription = store.name,
                 contentScale = ContentScale.Crop,
-                modifier = modifier
+                modifier = modifier.clickable { onClick() }
             )
         }
         Row(
-            modifier = Modifier.width(230.dp).padding(top = 5.dp),
+            modifier = Modifier
+                .width(230.dp)
+                .padding(top = 5.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -57,9 +60,9 @@ fun StoreComponent(store : Store, modifier: Modifier = Modifier){
                 fontSize = 12.sp
             )
         }
-        Row (
+        Row(
             modifier = Modifier.padding(top = 10.dp)
-        ){
+        ) {
             Image(
                 painter = painterResource(R.drawable.lightingstar),
                 contentScale = ContentScale.Crop,

@@ -1,3 +1,12 @@
 package com.kuit.kuit6android.model
 
-data class Store(val name : String, val img : ImageResource, val time : String, val star : Double, val commentCount : Int)
+import java.util.UUID
+
+data class Store(
+    val id: String = UUID.randomUUID().toString(),
+    val name: String,
+    val img: ImageResource,
+    val time: String,
+    val star: Double,
+    val commentCount: Int
+)

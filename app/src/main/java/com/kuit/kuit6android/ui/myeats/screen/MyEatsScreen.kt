@@ -3,6 +3,7 @@ package com.kuit.kuit6android.ui.myeats.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.model.User
+import com.kuit.kuit6android.model.factory.StoreFactory
 import com.kuit.kuit6android.ui.components.myeats.MyPageTopComponent
 import com.kuit.kuit6android.ui.theme.Pretendard
 
@@ -36,8 +38,9 @@ fun MyEatsScreen(
         phone = "010-1234-5678",
         myReview = listOf(),
         helpCount = 0,
-        favoriteStore = listOf()
+        favoriteStore = StoreFactory.getStoreList()
     ),
+    clickedFavoriteNavigate: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -82,7 +85,9 @@ fun MyEatsScreen(
                     text = "즐겨찾기",
                     fontSize = 21.sp,
                     fontFamily = Pretendard,
-                    modifier = Modifier.padding(19.dp)
+                    modifier = Modifier.padding(19.dp).clickable{
+                        clickedFavoriteNavigate()
+                    }
                 )
             }
 
