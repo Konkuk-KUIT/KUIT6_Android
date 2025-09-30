@@ -1,6 +1,5 @@
 package com.kuit.kuit6android.ui.detail.screen
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,10 +31,9 @@ import com.kuit.kuit6android.ui.theme.Pretendard
 
 @Composable
 fun DetailPage(store: Store, onBackClick: () -> Unit) {
-    Log.d("DetailPage", store.toString())
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().statusBarsPadding()
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
