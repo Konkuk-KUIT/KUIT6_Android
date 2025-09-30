@@ -2,6 +2,7 @@ package com.kuit.kuit6android.ui.detail.screen
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,7 +30,7 @@ import com.kuit.kuit6android.model.factory.StoreFactory
 import com.kuit.kuit6android.ui.theme.Pretendard
 
 @Composable
-fun DetailPage(store: Store){
+fun DetailPage(store: Store, onBackClick: () -> Unit) {
     Log.d("DetailPage", store.toString())
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -44,13 +45,19 @@ fun DetailPage(store: Store){
                 painter = painterResource(id = R.drawable.outline_keyboard_backspace_24),
                 contentDescription = "back",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.padding(start = 27.dp).size(24.dp)
+                modifier = Modifier
+                    .padding(start = 27.dp)
+                    .size(24.dp)
+                    .clickable { onBackClick() }
             )
             Image(
                 painter = painterResource(id = R.drawable.outline_favorite_24),
                 contentDescription = "favorite",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.padding(end = 27.dp).size(24.dp)
+                modifier = Modifier
+                    .padding(end = 27.dp)
+                    .size(24.dp)
+                    .clickable { onBackClick() }
             )
         }
         when (val img = store.img) {
@@ -58,14 +65,20 @@ fun DetailPage(store: Store){
                 painter = painterResource(img.resId),
                 contentScale = ContentScale.Crop,
                 contentDescription = store.name,
-                modifier = Modifier.fillMaxWidth().padding(top = 20.dp).height(149.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp)
+                    .height(149.dp)
             )
 
             is ImageResource.Url -> AsyncImage(
                 model = img.url,
                 contentDescription = store.name,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth().padding(top = 20.dp).height(149.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 20.dp)
+                    .height(149.dp)
             )
         }
 
@@ -101,6 +114,6 @@ fun DetailPage(store: Store){
 
 @Preview(showBackground = true)
 @Composable
-private fun DetailPagePreview(){
-    DetailPage(store = StoreFactory.getStoreList()[0])
+private fun DetailPagePreview() {
+    DetailPage(store = StoreFactory.getStoreList()[0], {})
 }

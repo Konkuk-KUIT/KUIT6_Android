@@ -36,7 +36,7 @@ fun FavoriteScreen(
                 .then(modifier)
                 .padding(padding)
         ) {
-            TopBarComponent(modifier = Modifier.padding(horizontal = 27.dp))
+            TopBarComponent(onBack = viewModel::onBack,modifier = Modifier.padding(horizontal = 27.dp))
             Text(
                 text = "총 ${safeUser.favoriteStore.size}개",
                 fontSize = 20.sp,

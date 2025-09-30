@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.kuit.kuit6android.model.Store
 import com.kuit.kuit6android.model.User
 import com.kuit.kuit6android.model.factory.StoreFactory
+import com.kuit.kuit6android.navigation.NavEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -13,8 +14,14 @@ class FavoriteViewModel : ViewModel() {
     private val _user = MutableStateFlow<User?>(null)
     val user: StateFlow<User?> = _user
 
-    private val _navigateToDetail = MutableSharedFlow<Store>(extraBufferCapacity = 1)
-    val navigateToDetail: SharedFlow<Store> = _navigateToDetail
+    private val _nav = MutableSharedFlow<NavEvent>(
+        replay = 0, extraBufferCapacity = 1
+    )
+    val nav: SharedFlow<NavEvent> = _nav
+
+    fun onBack(){
+        _nav.tryEmit(NavEvent.Back)
+    }
 
     init {
         _user.value = User(
@@ -28,7 +35,7 @@ class FavoriteViewModel : ViewModel() {
 
     fun onStoreClicked(store: Store) {
         StoreCache.put(store)
-        _navigateToDetail.tryEmit(store)
+        _nav.tryEmit(NavEvent.ToDetail(store.id))
     }
 }
 

@@ -1,6 +1,7 @@
 package com.kuit.kuit6android.ui.components.favorite
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,9 +21,11 @@ import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.theme.Pretendard
 
 @Composable
-fun TopBarComponent(modifier: Modifier = Modifier) {
+fun TopBarComponent(onBack: () -> Unit, modifier: Modifier = Modifier) {
     Row(
-        modifier = Modifier.then(modifier).fillMaxWidth(),
+        modifier = Modifier
+            .then(modifier)
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -30,7 +33,7 @@ fun TopBarComponent(modifier: Modifier = Modifier) {
             Image(
                 painter = painterResource(R.drawable.outline_keyboard_backspace_24),
                 contentDescription = "back",
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(24.dp).clickable { onBack() }
             )
             Text(
                 text = "즐겨찾기",
@@ -52,6 +55,6 @@ fun TopBarComponent(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-private fun TopBarComponentPreview(){
-    TopBarComponent()
+private fun TopBarComponentPreview() {
+    TopBarComponent({})
 }

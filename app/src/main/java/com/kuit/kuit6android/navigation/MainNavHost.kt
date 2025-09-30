@@ -30,10 +30,12 @@ fun MainNavHost(
     padding: PaddingValues,
     navController: NavHostController,
 ) {
+
     NavHost(
         navController = navController,
         startDestination = Route.Home,
     ) {
+
         composable<Route.Home> {
             HomeScreen(
                 padding = padding,
@@ -47,13 +49,16 @@ fun MainNavHost(
         composable<Route.Favorite> {
             val viewModel: FavoriteViewModel = viewModel()
 
-            LaunchedEffect(Unit) {
-                viewModel.navigateToDetail.collect { store ->
-                    Log.d("NavGraph", "Navigating to detail/$id")
-                    navController.navigate("detail/${store.id}")
+            LaunchedEffect(viewModel) {
+                viewModel.nav.collect { ev ->
+                    when (ev){
+                        NavEvent.Back -> navController.popBackStack()
+                        is NavEvent.ToDetail -> {
+                            navController.navigate("detail/${ev.id}")
+                        }
+                    }
                 }
             }
-
 
             FavoriteScreen(padding = padding, viewModel = viewModel)
         }
@@ -65,11 +70,10 @@ fun MainNavHost(
             val store = StoreCache.get(storeId)
 
             if (store == null) {
-                Log.e("Nav", "Invalid storeId: $storeId")
-                navController.popBackStack() // 또는 Navigate to ErrorPage
+                navController.popBackStack()
                 return@composable
             }
-            DetailPage(store = store)
+            DetailPage(store = store, onBackClick = {navController.popBackStack()})
         }
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
