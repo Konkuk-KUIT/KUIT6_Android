@@ -71,7 +71,8 @@ fun RecentlyViewedRow(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(21.dp)
         ) {
             items(restaurantList) { restaurant ->
-                RecentlyViewedItem(restaurantData = restaurant)
+                RecentlyViewedItem(w=230.dp,
+                    restaurantData = restaurant)
             }
         }
     }

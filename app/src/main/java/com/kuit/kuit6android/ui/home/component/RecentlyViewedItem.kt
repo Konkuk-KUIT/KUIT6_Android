@@ -19,26 +19,32 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.home.data.RestaurantData
 
 @Composable
-fun RecentlyViewedItem(modifier: Modifier = Modifier, restaurantData: RestaurantData) {
+fun  RecentlyViewedItem(
+    modifier: Modifier = Modifier,
+    w: Dp,
+    restaurantData: RestaurantData
+) {
     Column(
-        modifier = modifier.size(width = 231.dp, height = 176.dp)
+        modifier = modifier.size(width = w, height = 176.dp)
     ) {
         Image(
             painter = painterResource(restaurantData.imageId),
             contentDescription = restaurantData.name,
             modifier = modifier
-                .size(width = 230.dp, height = 129.dp)
+                .size(width = w, height = 129.dp)
                 .clip(shape = RoundedCornerShape(8.dp)),
             contentScale = ContentScale.Crop // 사진 비율에 따른 여백 문제 해결(잘리더라도 꽉 채우게)
         )
         Row(
-            modifier = modifier.width(231.dp)
+            modifier = modifier
+                .width(w)
                 .padding(top = 5.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -55,7 +61,7 @@ fun RecentlyViewedItem(modifier: Modifier = Modifier, restaurantData: Restaurant
                 fontSize = 12.sp
             )
         }
-        Row (
+        Row(
             modifier = modifier.padding(top = 10.dp)
         ) {
             Image(
@@ -77,11 +83,14 @@ fun RecentlyViewedItem(modifier: Modifier = Modifier, restaurantData: Restaurant
 @Preview(showBackground = true)
 @Composable
 private fun RecentItemPrev() {
-    RecentlyViewedItem(restaurantData = RestaurantData(
-        imageId = R.drawable.img_ourddeokbokki,
-        name = "아워떡볶이",
-        time = "30분",
-        rate = 4.9f,
-        reviewNum = 3849
-    ))
+    RecentlyViewedItem(
+        w = 306.dp,
+        restaurantData = RestaurantData(
+            imageId = R.drawable.img_ourddeokbokki,
+            name = "아워떡볶이",
+            time = "30분",
+            rate = 4.9f,
+            reviewNum = 3849
+        )
+    )
 }
