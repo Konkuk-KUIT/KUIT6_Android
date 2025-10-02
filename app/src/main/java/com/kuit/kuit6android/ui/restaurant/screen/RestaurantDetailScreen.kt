@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -73,8 +75,10 @@ fun RestaurantDetailScreen(
             painter = painterResource(restaurant.imageId),
             contentDescription = restaurant.name,
             modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(360f / 149f), // 가로 기준 세로 비율 자동 결정
+                .width(360.dp)
+                .height(149.dp),
+//                .fillMaxWidth()
+//                .aspectRatio(360f / 149f), // 가로 기준 세로 비율 자동 결정
             contentScale = ContentScale.Crop // 사진 비율에 따른 여백 문제 해결(잘리더라도 꽉 채우게)
         )
 

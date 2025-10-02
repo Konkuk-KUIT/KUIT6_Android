@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +33,10 @@ fun  RecentlyViewedItem(
     restaurantData: RestaurantData
 ) {
     Column(
-        modifier = modifier.size(width = w, height = 176.dp)
+        modifier = modifier
+//            .size(width = w, height = 176.dp)
+            .width(w)
+            .wrapContentHeight() // 에뮬레이터에서 잘려 보여서...
     ) {
         Image(
             painter = painterResource(restaurantData.imageId),
@@ -62,7 +66,8 @@ fun  RecentlyViewedItem(
             )
         }
         Row(
-            modifier = Modifier.padding(top = 10.dp)
+            modifier = Modifier.padding(top = 10.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(id = R.drawable.img_star),
