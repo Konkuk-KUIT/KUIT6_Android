@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
@@ -71,11 +70,12 @@ fun MainNavHost(
                 )
             }
 
-            composable<Route.RestaurantDetail>{ navBackStackEntry ->
+            composable<Route.RestaurantDetail> { navBackStackEntry ->
                 val restaurant = navBackStackEntry.toRoute<Route.RestaurantDetail>()
                 RestaurantDetailScreen(
                     padding = padding,
-                    restaurant = restaurant
+                    restaurant = restaurant,
+                    onBackClick = { navController.popBackStack() }
                 )
             }
         }
@@ -85,10 +85,39 @@ fun MainNavHost(
                 padding = padding,
             )
         }
-        composable<Route.MyEats> {
-            MyEatsScreen(
-                padding = padding,
-            )
+
+        navigation<Route.MyEatsNestedGraphRoute>(
+            startDestination = Route.MyEats
+        ) {
+            composable<Route.MyEats> {
+                MyEatsScreen(
+                    padding = padding,
+                    onNavigateToFavorite = {
+                        navController.navigate(Route.MyEatsFavorite)
+                    }
+                )
+            }
+
+            composable<Route.MyEatsFavorite> {
+                FavoriteScreen(
+                    padding = padding,
+                    onNavigateToRestaurantDetail = { restaurant ->
+                        navController.navigate(
+                            Route.RestaurantDetail(
+                                imageId = restaurant.imageId,
+                                name = restaurant.name,
+                                time = restaurant.time,
+                                rate = restaurant.rate,
+                                reviewNum = restaurant.reviewNum
+                            )
+                        )
+                    },
+                    showBackButton = true,
+                    onBackClick = { navController.popBackStack() }
+                )
+            }
+
         }
+
     }
 }

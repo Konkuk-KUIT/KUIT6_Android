@@ -35,8 +35,9 @@ import com.kuit.kuit6android.ui.home.data.RestaurantData
 fun FavoriteScreen(
     padding: PaddingValues,
     onNavigateToRestaurantDetail: (RestaurantData) -> Unit,
+    showBackButton: Boolean = false,
+    onBackClick: (()-> Unit)? = null,
     modifier: Modifier = Modifier
-
 ) {
     Column(
         modifier = Modifier.padding(
@@ -78,14 +79,18 @@ fun FavoriteScreen(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(24.dp)
         ) {
-            Icon(
-                painter = painterResource(
-                    R.drawable.ic_back_arrow
-                ),
-                contentDescription = "뒤로가기 화살표",
-                modifier = Modifier.size(24.dp),
-                tint = Color(0xFF666668)
-            )
+            if(showBackButton){
+                Icon(
+                    painter = painterResource(
+                        R.drawable.ic_back_arrow
+                    ),
+                    contentDescription = "뒤로가기 화살표",
+                    modifier = Modifier.size(24.dp)
+                        .clickable{onBackClick?.invoke()}, // 함수 타입 변수는 invoke()로 실행 가능
+                    tint = Color(0xFF666668)
+                )
+            }
+
             Text(
                 modifier = Modifier
                     .weight(1f),

@@ -2,13 +2,13 @@ package com.kuit.kuit6android.ui.restaurant.screen
 
 import android.icu.text.DecimalFormat
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -26,15 +26,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.navigation.Route
-import com.kuit.kuit6android.ui.home.data.RestaurantData
 
 @Composable
 fun RestaurantDetailScreen(
     modifier: Modifier = Modifier,
     padding: PaddingValues,
     restaurant: Route.RestaurantDetail,
-
-    ) {
+    onBackClick: (() -> Unit)? = null
+) {
 
     Column(
         modifier = Modifier.padding(
@@ -56,7 +55,8 @@ fun RestaurantDetailScreen(
                 ),
                 contentDescription = "뒤로가기 화살표",
                 modifier = Modifier
-                    .size(24.dp),
+                    .size(24.dp)
+                    .clickable{onBackClick?.invoke()},
                 tint = Color(0xFF666668)
 
             )
@@ -83,12 +83,12 @@ fun RestaurantDetailScreen(
             color = Color.Black,
             fontSize = 30.sp,
             fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(top=25.dp, bottom = 8.dp)
+            modifier = Modifier.padding(top = 25.dp, bottom = 8.dp)
         )
 
-        Row (
+        Row(
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.img_star),
                 contentDescription = "img_star",

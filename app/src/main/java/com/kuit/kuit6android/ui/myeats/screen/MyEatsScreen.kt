@@ -3,6 +3,7 @@ package com.kuit.kuit6android.ui.myeats.screen
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -36,7 +37,8 @@ import com.kuit.kuit6android.ui.myeats.components.InfoItem
 @Composable
 fun MyEatsScreen(
     padding: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateToFavorite: () -> Unit
 ) {
     val scrollState = rememberScrollState()
 
@@ -97,7 +99,8 @@ fun MyEatsScreen(
         Row(
             modifier = modifier
                 .padding(top = 10.dp)
-                .width(width = 306.dp),
+                .width(width = 306.dp)
+                .clickable { onNavigateToFavorite() },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(19.dp)
         ) {
@@ -119,5 +122,5 @@ fun MyEatsScreen(
 @Preview(showBackground = true)
 @Composable
 private fun MyEatsPreview() {
-    MyEatsScreen(PaddingValues())
+//    MyEatsScreen(PaddingValues())
 }
