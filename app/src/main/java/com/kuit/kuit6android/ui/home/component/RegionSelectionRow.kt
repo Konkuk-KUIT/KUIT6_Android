@@ -1,8 +1,12 @@
 package com.kuit.kuit6android.ui.home.component
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,34 +27,40 @@ import com.kuit.kuit6android.R
 fun RegionSelectionRow(modifier: Modifier = Modifier) {
     var region by rememberSaveable { mutableStateOf("서울시 광진구 구의동") }
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 27.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_marker),
-            contentDescription = "search",
-            modifier = modifier.size(24.dp),
-            tint = Color(0xFFA4A4A6)
-        )
-        Text(
-            text = region,
-            fontSize = 15.sp,
-            color = Color.Black,
-            modifier = modifier.padding(start = 12.dp, end = 9.dp)
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.ic_accordian_view_button),
-            contentDescription = "search",
-            modifier = modifier
-                .padding(start = 3.dp, top = 3.dp )
-                .size(10.dp),
-            tint = Color(0xFF666668)
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_marker),
+                contentDescription = "search",
+                modifier = modifier.size(24.dp),
+                tint = Color(0xFFA4A4A6)
+            )
+            Spacer(Modifier.width(12.dp))
+            Text(
+                text = region,
+                fontSize = 15.sp,
+                color = Color.Black,
+            )
+            Spacer(Modifier.width(9.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.ic_accordian_view_button),
+                contentDescription = "search",
+                modifier = modifier
+                    .size(10.dp),
+                tint = Color(0xFF666668)
+            )
+        }
         Icon(
             painter = painterResource(id = R.drawable.ic_alarm),
             contentDescription = "search",
             modifier = modifier
                 .padding(2.5.dp)
-                .padding(start = 96.dp)
                 .size(19.dp)
         )
     }

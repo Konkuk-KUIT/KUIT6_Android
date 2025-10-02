@@ -2,8 +2,10 @@ package com.kuit.kuit6android.ui.home.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -73,6 +75,9 @@ fun RecentlyViewedRow(modifier: Modifier = Modifier) {
             items(restaurantList) { restaurant ->
                 RecentlyViewedItem(w=230.dp,
                     restaurantData = restaurant)
+            }
+            item {
+                Spacer(modifier = Modifier.width(6.dp))
             }
         }
     }

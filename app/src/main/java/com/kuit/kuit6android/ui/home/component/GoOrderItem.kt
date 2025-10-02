@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,10 +25,11 @@ import androidx.compose.ui.unit.sp
 fun GoOrderItem(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 27.dp)
             .background(Color(0xFF0C2F65), shape = RoundedCornerShape(size = 8.dp))
-            .size(width = 306.dp, height = 77.dp)
             .padding(all = 12.dp),
-        contentAlignment = Alignment.CenterStart
+        contentAlignment = Alignment.Center
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
