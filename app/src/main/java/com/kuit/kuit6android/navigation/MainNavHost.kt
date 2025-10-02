@@ -5,10 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navigation
+import androidx.navigation.toRoute
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
+import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
 
 @Composable
@@ -25,14 +28,42 @@ fun MainNavHost(
                 padding = padding,
             )
         }
-        composable<Route.Search> {
-            SearchScreen(
-                padding = padding,
-            )
+
+        navigation<Route.SearchNestedGraphRoute>(
+            startDestination = Route.Search
+        ){
+            composable<Route.Search> {
+                SearchScreen(
+                    padding = padding,
+                    {
+                        navController.navigate(Route.SearchResult(searchKeyword = it))
+                    }
+                )
+            }
+
+            composable<Route.SearchResult> { navBackStackEntry ->
+                val keyword = navBackStackEntry.toRoute<Route.SearchResult>().searchKeyword
+                SearchResultScreen(
+                    padding = padding,
+                    searchKeyword = keyword
+                )
+            }
         }
+
         composable<Route.Favorite> {
             FavoriteScreen(
                 padding = padding,
+                onNavigateToRestaurantDetail = { restaurant ->
+                    navController.navigate(
+                        Route.RestaurantDetail(
+                            imageId = restaurant.imageId,
+                            name = restaurant.name,
+                            time = restaurant.time,
+                            rating = restaurant.rating,
+                            reviewCount = restaurant.reviewCount
+                        )
+                    )
+                }
             )
         }
         composable<Route.OrderHistory> {
