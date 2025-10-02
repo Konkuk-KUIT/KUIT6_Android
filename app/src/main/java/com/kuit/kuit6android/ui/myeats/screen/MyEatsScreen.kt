@@ -159,7 +159,7 @@ fun MyEatsScreen(
         Row (
             modifier = modifier.fillMaxWidth().padding(top = 22.dp, start = 27.dp, end = 27.dp)
                 .clickable(onClick = {
-                    onNavigateToFavorite()
+                    onNavigateToFavorite() // 눌렀을 때 즐겨찾기 탭으로 이동하는 함수 호출
                 }),
             horizontalArrangement = Arrangement.spacedBy(20.dp),
             verticalAlignment = Alignment.CenterVertically

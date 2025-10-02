@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.navigation.BottomNavBar
 import com.kuit.kuit6android.navigation.MainNavHost
 import com.kuit.kuit6android.navigation.NavTab
+import com.kuit.kuit6android.navigation.Route
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,12 +27,20 @@ class MainActivity : ComponentActivity() {
         setContent {
             KUIT6_ANDROIDTheme {
                 val navController = rememberNavController()
-                
+
                 // currentDestination: 지금 보고 있는 화면 정보
                 val currentDestination = navController.currentBackStackEntryAsState().value?.destination
                 // NavTab 타입의 currentTab: NavTab.entries 중에서
                 // currentDestination의 route와 일치하는 NavTab entry를 반환 (없으면 null)
                 val currentTab: NavTab? = NavTab.entries.find { tab -> currentDestination?.hasRoute(route = tab.route::class) == true }
+                val bottomNavRoutes = listOf(
+                    Route.Home::class,
+                    Route.Search::class,
+                    Route.Favorite::class,
+                    Route.OrderHistory::class,
+                    Route.MyEats::class
+                )
+                val showBottomBar = bottomNavRoutes.any { currentDestination?.hasRoute(it) == true }
 
                 Scaffold(
                     containerColor = Color.White,
@@ -39,11 +48,12 @@ class MainActivity : ComponentActivity() {
                     bottomBar = {
 
                         BottomNavBar(
-                            visible = true,
+                            visible = showBottomBar,
                             tabs = NavTab.entries,
                             currentTab = currentTab,
                             onItemSelected = { tab ->
                                 navController.navigate(tab.route){
+                                    // 해당 탭이 있는 곳까지 BackStack에 있는 화면 pop + 새 화면 생성
                                     popUpTo(route = tab.route){
                                         inclusive = true
                                     }

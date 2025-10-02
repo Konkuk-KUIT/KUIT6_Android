@@ -10,6 +10,7 @@ import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.kuit.kuit6android.ui.favorite.screen.DetailPage
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
+import com.kuit.kuit6android.ui.favorite.screen.MyEatsFavorite
 import com.kuit.kuit6android.ui.home.component.StoreData
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
@@ -34,7 +35,7 @@ fun MainNavHost(
 
         navigation<Route.SearchNestedGraphRoute>(
             startDestination = Route.Search
-        ){
+        ) {
             composable<Route.Search> {
                 SearchScreen(
                     padding = padding,
@@ -44,7 +45,7 @@ fun MainNavHost(
                 )
             }
 
-            composable<Route.SearchResult>{navBackStackEntry ->
+            composable<Route.SearchResult> { navBackStackEntry ->
                 val keyword = navBackStackEntry.toRoute<Route.SearchResult>().searchKeyword
                 SearchResultScreen(
                     padding = padding,
@@ -53,39 +54,24 @@ fun MainNavHost(
             }
         }
 
-        navigation<Route.FavoriteNestedGraphRoute>(
-            startDestination = Route.Favorite
-        ){
-            composable<Route.Favorite> {
-                FavoriteScreen(
-                    padding = padding,
-                    onNavigateToFavoriteStoreInfo = { store ->
-                        navController.navigate(
-                            Route.DetailPage(
-                                imageId = store.imageId,
-                                name = store.name,
-                                deliveryTime = store.deliveryTime,
-                                score = store.score,
-                                reviewCount = store.reviewCount
-                            )
-                        )
-                    },
-                    navController = navController
-                )
-            }
+        composable<Route.Favorite> {
+            FavoriteScreen(
+                padding = padding
+            )
+        }
 
-            composable<Route.DetailPage> { backStackEntry ->
-                val args = backStackEntry.toRoute<Route.DetailPage>()
-                val store = StoreData(
-                    imageId = args.imageId,
-                    name = args.name,
-                    deliveryTime = args.deliveryTime,
-                    score = args.score,
-                    reviewCount = args.reviewCount
-                )
-                // 화면 컴포저블로 전달
-                DetailPage(storeInfo = store, navController = navController)
-            }
+        // 넘겨 받은 StoreData 정보를 DetailPage() 로 전달
+        composable<Route.DetailPage> { backStackEntry ->
+            val args = backStackEntry.toRoute<Route.DetailPage>() // 넘겨 받은 인자 args에 저장
+            val store = StoreData(
+                imageId = args.imageId,
+                name = args.name,
+                deliveryTime = args.deliveryTime,
+                score = args.score,
+                reviewCount = args.reviewCount
+            )
+            // 화면 컴포저블로 전달
+            DetailPage(storeInfo = store, navController = navController)
         }
 
         composable<Route.OrderHistory> {
@@ -96,20 +82,20 @@ fun MainNavHost(
 
         navigation<Route.MyEatsNestedGraphRoute>(
             startDestination = Route.MyEats
-        ){
+        ) {
             composable<Route.MyEats> {
                 MyEatsScreen(
                     padding = padding,
                     onNavigateToFavorite = {
-                        navController.navigate(Route.Favorite)
+                        navController.navigate(Route.MyEatsFavorite) // 즐겨찾기 화면으로 이동
                     }
                 )
             }
 
-            composable<Route.Favorite>{
-                FavoriteScreen(
+            composable<Route.MyEatsFavorite> { // MyEats 전용 즐겨찾기 라우트
+                MyEatsFavorite(
                     padding = padding,
-                    onNavigateToFavoriteStoreInfo = { store ->
+                    onNavigateToDetailPage = { store ->
                         navController.navigate(
                             Route.DetailPage(
                                 imageId = store.imageId,
