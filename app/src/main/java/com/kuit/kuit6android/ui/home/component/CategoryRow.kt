@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kuit.kuit6android.R
+import com.kuit.kuit6android.ui.home.data.CategoryData
 
 @Composable
 fun CategoryRow(modifier: Modifier = Modifier) {

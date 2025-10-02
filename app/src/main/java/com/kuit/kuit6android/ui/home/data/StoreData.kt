@@ -1,4 +1,4 @@
-package com.kuit.kuit6android.ui.home.component
+package com.kuit.kuit6android.ui.home.data
 import kotlinx.serialization.Serializable
 @Serializable
 data class StoreData(

@@ -9,6 +9,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
@@ -40,6 +41,7 @@ fun KUIT6_ANDROIDTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
+
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
@@ -55,4 +57,16 @@ fun KUIT6_ANDROIDTheme(
         typography = Typography,
         content = content
     )
+}
+
+object CoupangEatsTheme{
+    val colors : CoupangEatsColors
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalCoupangEatsColors.current
+
+    val typography: CoupangEatsTypography
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalCoupangEatsTypography.current
 }

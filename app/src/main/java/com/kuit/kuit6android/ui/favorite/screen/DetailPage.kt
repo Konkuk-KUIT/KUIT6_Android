@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.R
-import com.kuit.kuit6android.ui.home.component.StoreData
+import com.kuit.kuit6android.ui.home.data.StoreData
 
 @Composable
 fun DetailPage(
@@ -53,7 +53,7 @@ fun DetailPage(
                 contentDescription = "뒤로가기 화살표",
                 modifier = modifier
                     .size(24.dp)
-                    .clickable { navController.popBackStack() },
+                    .clickable { navController.popBackStack() }, // 이전 화면으로 이동
                 tint = Color.Gray
             )
             Image(
@@ -64,6 +64,7 @@ fun DetailPage(
         }
 
         // 가게 정보
+        // onNavigateToDetailPage() 로 전달 받은 StoreData 정보
         Column(
             verticalArrangement = Arrangement.Center
         ) {
