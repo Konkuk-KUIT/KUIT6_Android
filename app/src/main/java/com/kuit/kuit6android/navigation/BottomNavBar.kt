@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun BottomNavBar(
     visible: Boolean,
-    items: List<BottomNavBarItem>,
-    currentIndex: Int,
-    onItemSelected: (Int, BottomNavBarItem) -> Unit,
+    tabs: List<NavTab>,
+    currentTab: NavTab?,
+    onItemSelected: (NavTab) -> Unit,
 ) {
     Box(modifier = Modifier.background(Color.White)) {
         Column {
@@ -38,27 +38,27 @@ fun BottomNavBar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                items.forEachIndexed { index, item ->
+                tabs.forEach { tab ->
                     Column(
                         modifier = Modifier
                             .weight(1f)
                             .clickable(indication = null, interactionSource = null) {
-                                onItemSelected(index, item)
+                                onItemSelected(tab)
                             },
                         verticalArrangement = Arrangement.spacedBy(3.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Icon(
-                            painter = painterResource(id = item.icon),
-                            contentDescription = item.label,
-                            tint = if (index == currentIndex)
+                            painter = painterResource(id = tab.icon),
+                            contentDescription = tab.label,
+                            tint = if (tab == currentTab)
                                 Color.Black
                             else Color(0xff939DA9)
                         )
                         Text(
-                            item.label,
+                            text = tab.label,
                             fontSize = 13.sp,
-                            color = if (index == currentIndex)
+                            color = if (tab == currentTab)
                                 Color.Black
                             else Color(0xff939DA9)
                         )
