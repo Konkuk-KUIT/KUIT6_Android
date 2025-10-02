@@ -27,6 +27,8 @@ fun BottomNavBar(
     currentTab: NavTab?,
     onItemSelected: (NavTab) -> Unit,
 ) {
+    if(!visible) return
+
     Box(modifier = Modifier.background(Color.White)) {
         Column {
             HorizontalDivider(color = Color.LightGray)

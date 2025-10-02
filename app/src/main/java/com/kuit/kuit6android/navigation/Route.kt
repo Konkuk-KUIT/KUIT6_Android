@@ -21,6 +21,18 @@ sealed interface Route {
     data object Favorite : Route
 
     @Serializable
+    data class RestaurantDetail(
+        val imageId : Int,
+        val name: String,
+        val time: String,
+        val rate: Float,
+        val reviewNum: Int
+    ) : Route
+
+    @Serializable
+    data object FavoriteNestedGraphRoute : Route
+
+    @Serializable
     data object OrderHistory : Route
 
     @Serializable

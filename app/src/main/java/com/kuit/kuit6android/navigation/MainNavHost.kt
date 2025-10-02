@@ -5,12 +5,14 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
+import com.kuit.kuit6android.ui.restaurant.screen.RestaurantDetailScreen
 import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
 
@@ -41,16 +43,43 @@ fun MainNavHost(
             }
 
             composable<Route.SearchResult> { navBackStackEntry ->
-                val keyeord = navBackStackEntry.toRoute<Route.SearchResult>().searchKeyword
-                SearchResultScreen(padding = padding,
-                    searchKeyword = keyeord)
+                val keyword = navBackStackEntry.toRoute<Route.SearchResult>().searchKeyword
+                SearchResultScreen(
+                    padding = padding,
+                    searchKeyword = keyword
+                )
             }
         }
-        composable<Route.Favorite> {
-            FavoriteScreen(
-                padding = padding,
-            )
+
+        navigation<Route.FavoriteNestedGraphRoute>(
+            startDestination = Route.Favorite
+        ) {
+            composable<Route.Favorite> {
+                FavoriteScreen(
+                    padding = padding,
+                    onNavigateToRestaurantDetail = { restaurant ->
+                        navController.navigate(
+                            Route.RestaurantDetail(
+                                imageId = restaurant.imageId,
+                                name = restaurant.name,
+                                time = restaurant.time,
+                                rate = restaurant.rate,
+                                reviewNum = restaurant.reviewNum
+                            )
+                        )
+                    }
+                )
+            }
+
+            composable<Route.RestaurantDetail>{ navBackStackEntry ->
+                val restaurant = navBackStackEntry.toRoute<Route.RestaurantDetail>()
+                RestaurantDetailScreen(
+                    padding = padding,
+                    restaurant = restaurant
+                )
+            }
         }
+
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
                 padding = padding,

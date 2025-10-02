@@ -1,7 +1,7 @@
 package com.kuit.kuit6android.ui.favorite.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +20,6 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,13 +27,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
+import com.kuit.kuit6android.navigation.Route
 import com.kuit.kuit6android.ui.home.component.RecentlyViewedItem
 import com.kuit.kuit6android.ui.home.data.RestaurantData
 
 @Composable
 fun FavoriteScreen(
     padding: PaddingValues,
+    onNavigateToRestaurantDetail: (RestaurantData) -> Unit,
     modifier: Modifier = Modifier
+
 ) {
     Column(
         modifier = Modifier.padding(
@@ -45,7 +46,6 @@ fun FavoriteScreen(
     ) {
         val restaurantList = remember {
             mutableStateListOf(
-
                 RestaurantData(
                     imageId = R.drawable.img_ourddeokbokki,
                     name = "아워떡볶이",
@@ -83,7 +83,8 @@ fun FavoriteScreen(
                     R.drawable.ic_back_arrow
                 ),
                 contentDescription = "뒤로가기 화살표",
-                modifier = Modifier.padding(start = 3.dp)
+                modifier = Modifier.size(24.dp),
+                tint = Color(0xFF666668)
             )
             Text(
                 modifier = Modifier
@@ -102,7 +103,7 @@ fun FavoriteScreen(
         }
 
         Text(
-            text = "총 X개",
+            text = "총 ${restaurantList.size}개",
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
             color = Color.Black,
@@ -124,7 +125,14 @@ fun FavoriteScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             items(restaurantList) { restaurant ->
-                RecentlyViewedItem(w = 306.dp, restaurantData = restaurant)
+                RecentlyViewedItem(
+                    w = 306.dp,
+                    restaurantData = restaurant,
+                    modifier = modifier
+                        .clickable(onClick = {
+                            onNavigateToRestaurantDetail(restaurant)
+                        })
+                )
             }
         }
     }
@@ -133,5 +141,5 @@ fun FavoriteScreen(
 @Preview(showBackground = true)
 @Composable
 private fun FavoritePreview() {
-    FavoriteScreen(PaddingValues())
+//    FavoriteScreen(PaddingValues())
 }

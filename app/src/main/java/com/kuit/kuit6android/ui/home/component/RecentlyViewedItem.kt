@@ -37,13 +37,13 @@ fun  RecentlyViewedItem(
         Image(
             painter = painterResource(restaurantData.imageId),
             contentDescription = restaurantData.name,
-            modifier = modifier
+            modifier = Modifier
                 .size(width = w, height = 129.dp)
                 .clip(shape = RoundedCornerShape(8.dp)),
             contentScale = ContentScale.Crop // 사진 비율에 따른 여백 문제 해결(잘리더라도 꽉 채우게)
         )
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .width(w)
                 .padding(top = 5.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -62,19 +62,19 @@ fun  RecentlyViewedItem(
             )
         }
         Row(
-            modifier = modifier.padding(top = 10.dp)
+            modifier = Modifier.padding(top = 10.dp)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.img_star),
                 contentDescription = "img_star",
-                modifier = modifier.size(width = 15.dp, height = 15.dp)
+                modifier = Modifier.size(width = 15.dp, height = 15.dp)
             )
             val revNum = DecimalFormat("#,###").format(restaurantData.reviewNum) // 천 단위 콤마
             Text(
                 text = "${restaurantData.rate} (${revNum})",
                 color = Color(0xFF575252).copy(alpha = 0.99f), // 투명도: 기존 Color에 .copy(alpha = ...)
                 fontSize = 12.sp,
-                modifier = modifier.padding(start = 5.dp)
+                modifier = Modifier.padding(start = 10.dp)
             )
         }
     }
