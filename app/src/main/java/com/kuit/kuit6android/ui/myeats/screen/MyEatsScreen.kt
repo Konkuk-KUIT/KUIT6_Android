@@ -31,7 +31,8 @@ import com.kuit.kuit6android.ui.search.screen.SearchScreen
 @Composable
 fun MyEatsScreen(
     padding: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateToFavorite: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -149,10 +150,8 @@ fun MyEatsScreen(
         }
         Row(
             modifier = modifier
+                .clickable{onNavigateToFavorite()}
                 .padding(top = 10.dp, start = 27.dp)
-                .clickable(onClick = {
-                    onNavigateToFavorite()
-                }),
         ) {
             Image(
                 painter = painterResource(R.drawable.like),

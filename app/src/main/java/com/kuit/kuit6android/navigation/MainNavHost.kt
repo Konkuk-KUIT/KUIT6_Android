@@ -2,6 +2,7 @@ package com.kuit.kuit6android.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -62,12 +63,13 @@ fun MainNavHost(
             )
         }
 
-        navigation<Route.MyEats>(
+        navigation<Route.MyEatsNestedGraphRoute>(
             startDestination = Route.MyEats
         ) {
             composable<Route.MyEats> {
                 MyEatsScreen(
-                    padding = padding
+                    padding = padding,
+                    onNavigateToFavorite = { navController.navigate(Route.Favorite) }
                 )
             }
         }
