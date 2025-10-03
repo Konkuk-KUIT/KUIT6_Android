@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
+import com.kuit.kuit6android.ui.favorite.screen.DetailScreen
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
@@ -48,12 +49,22 @@ fun MainNavHost(
             }
         }
 
-
         composable<Route.Favorite> {
             FavoriteScreen(
                 padding = padding,
+                navController = navController
             )
         }
+
+        composable<Route.StoreDetail> { backStackEntry ->
+            val args = backStackEntry.toRoute<Route.StoreDetail>()
+            DetailScreen(
+                storeName = args.storeName,
+                navController= navController
+            )
+        }
+
+
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
                 padding = padding,

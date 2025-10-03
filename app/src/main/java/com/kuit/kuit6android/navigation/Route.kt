@@ -20,6 +20,9 @@ sealed interface Route {
     data object Favorite : Route
 
     @Serializable
+    data class StoreDetail(val storeName: String) : Route
+
+    @Serializable
     data object OrderHistory : Route
 
     @Serializable

@@ -8,16 +8,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.kuit.kuit6android.navigation.BottomNavBar
 import com.kuit.kuit6android.navigation.MainNavHost
 import com.kuit.kuit6android.navigation.NavTab
+import com.kuit.kuit6android.navigation.Route
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,21 +38,27 @@ class MainActivity : ComponentActivity() {
                     containerColor = Color.White,
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
+                        val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+                        val isFavoriteScreen = navBackStackEntry?.let { entry ->
+                            try {
+                                entry.toRoute<Route.Favorite>()
+                                true
+                            } catch (_: Exception) {
+                                false
+                            }
+                        } ?: false
 
                         BottomNavBar(
-                            visible = true,
-                            tabs= NavTab.entries,
+                            visible = !isFavoriteScreen,
+                            tabs = NavTab.entries,
                             currentTab = currentTab,
                             onItemSelected = { tab ->
-                                navController.navigate(tab.route){
-                                    popUpTo(route = tab.route){
-                                        inclusive =true
-                                    }
-                                    launchSingleTop = true
-                                }
+                                navController.navigate(tab.route) { launchSingleTop = true }
                             },
                         )
-                    }
+                        }
+
                 ) { innerPadding ->
                     MainNavHost(
                         padding = innerPadding,

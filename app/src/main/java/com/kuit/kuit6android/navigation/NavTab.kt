@@ -33,7 +33,7 @@ enum class NavTab (
 
     MY_EATS(
     icon =R.drawable.ic_my_eats,
-    label = "My Eats",
+    label = "My 이츠",
     route = Route.MyEats
     )
 }

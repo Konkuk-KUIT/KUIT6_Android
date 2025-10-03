@@ -1,4 +1,4 @@
-package com.kuit.kuit6android.ui.myeats.screen
+package com.kuit.kuit6android.ui.favorite.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
