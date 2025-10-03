@@ -19,6 +19,11 @@ sealed interface Route {
     data object MyEats : Route
 
     @Serializable
+    data class SearchResult(
+        val searchKeyword:String,
+    ) : Route
+
+    @Serializable
     data class Detail(val storeId: String) : Route{
         companion object{
             const val routeBase = "detail"

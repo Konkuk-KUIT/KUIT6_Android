@@ -14,11 +14,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import com.kuit.kuit6android.ui.detail.screen.DetailPage
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
+import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
 import com.kuit.kuit6android.viewmodel.favorite.FavoriteViewModel
 import com.kuit.kuit6android.viewmodel.favorite.StoreCache
@@ -44,6 +46,16 @@ fun MainNavHost(
         composable<Route.Search> {
             SearchScreen(
                 padding = padding,
+                onNavigateToSearchResult = {
+                    navController.navigate(Route.SearchResult(searchKeyword = it))
+                }
+            )
+        }
+        composable<Route.SearchResult> { navBackStackEntry ->
+            val keyword = navBackStackEntry.toRoute<Route.SearchResult>().searchKeyword
+            SearchResultScreen(
+                padding = padding,
+                searchKeyWord = keyword
             )
         }
         composable<Route.Favorite> {
