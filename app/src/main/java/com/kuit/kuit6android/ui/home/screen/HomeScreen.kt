@@ -11,6 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kuit.kuit6android.MainActivity
+import com.kuit.kuit6android.navigation.MainNavHost
 import com.kuit.kuit6android.ui.home.component.CategoryRow
 import com.kuit.kuit6android.ui.home.component.GetCouponItem
 import com.kuit.kuit6android.ui.home.component.Location
