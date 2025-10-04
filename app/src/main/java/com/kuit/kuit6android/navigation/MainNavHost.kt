@@ -7,7 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
+import com.kuit.kuit6android.ui.favorite.screen.DetailInfo
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
+import com.kuit.kuit6android.ui.favorite.screen.MyEatFavorite
+import com.kuit.kuit6android.ui.home.data.RestaurantData
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
@@ -55,7 +58,7 @@ fun MainNavHost(
                 padding = padding,
                 onNavigateToRestaurantDetail = { restaurant ->
                     navController.navigate(
-                        Route.RestaurantDetail(
+                        Route.DetailInfo(
                             imageId = restaurant.imageId,
                             name = restaurant.name,
                             time = restaurant.time,
@@ -66,15 +69,54 @@ fun MainNavHost(
                 }
             )
         }
+
+        composable<Route.DetailInfo> { backStackEntry ->
+            val args = backStackEntry.toRoute<Route.DetailInfo>() // 넘겨 받은 인자 args에 저장
+            val restaurant = RestaurantData(
+                imageId = args.imageId,
+                name = args.name,
+                time = args.time,
+                rating = args.rating,
+                reviewCount = args.reviewCount
+            )
+            DetailInfo(restaurantInfo = restaurant, navController = navController)
+        }
+
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
                 padding = padding,
             )
         }
-        composable<Route.MyEats> {
-            MyEatsScreen(
-                padding = padding,
-            )
+
+        navigation<Route.MyEatsNestedGraphRoute>(
+            startDestination = Route.MyEats
+        ) {
+            composable<Route.MyEats> {
+                MyEatsScreen(
+                    padding = padding,
+                    onNavigateToFavorite = {
+                        navController.navigate(Route.MyEatsFavorite)
+                    }
+                )
+            }
+
+            composable<Route.MyEatsFavorite> {
+                MyEatFavorite(
+                    padding = padding,
+                    onNavigateToDetailPage = { restaurant ->
+                        navController.navigate(
+                            Route.DetailInfo(
+                                imageId = restaurant.imageId,
+                                name = restaurant.name,
+                                time = restaurant.time,
+                                rating = restaurant.rating,
+                                reviewCount = restaurant.reviewCount
+                            )
+                        )
+                    },
+                    navController = navController
+                )
+            }
         }
     }
 }

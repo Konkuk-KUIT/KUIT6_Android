@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
-import com.kuit.kuit6android.navigation.Route
 import com.kuit.kuit6android.ui.home.component.RestaurantItem
 import com.kuit.kuit6android.ui.home.data.RestaurantData
 
@@ -50,23 +49,30 @@ fun FavoriteScreen(
                 RestaurantData(
                     imageId = R.drawable.burgerry,
                     name = "버거리",
-                    time = 20,
-                    rating = 4.9,
-                    reviewCount = "4,900"
+                    time = 40,
+                    rating = 4.5,
+                    reviewCount = "(7,700)"
                 ),
                 RestaurantData(
                     imageId = R.drawable.salmon,
-                    name = "건대연어덮밥",
+                    name = "건대 연어 덮밥",
                     time = 30,
-                    rating = 4.9,
-                    reviewCount = "4,700"
+                    rating = 4.8,
+                    reviewCount = "(3,800)"
                 ),
                 RestaurantData(
                     imageId = R.drawable.gomi,
-                    name = "고미돈가스",
+                    name = "고미 돈까스",
+                    time = 30,
+                    rating = 4.3,
+                    reviewCount = "(5,700)"
+                ),
+                RestaurantData(
+                    imageId = R.drawable.burritopia,
+                    name = "부리또피아",
                     time = 30,
                     rating = 4.7,
-                    reviewCount = "4,300"
+                    reviewCount = "(2,700)"
                 )
             )
         }
@@ -87,7 +93,7 @@ fun FavoriteScreen(
                     contentDescription = "뒤로가기 화살표",
                     modifier = Modifier
                         .size(24.dp)
-                        .clickable { onBackClick?.invoke() }, // 함수 타입 변수는 invoke()로 실행 가능
+                        .clickable { onBackClick?.invoke() },
                     tint = Color(0xFF666668)
                 )
             }
