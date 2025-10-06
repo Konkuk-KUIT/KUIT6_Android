@@ -46,65 +46,6 @@ fun HistoryRestaurantItem(
     modifier: Modifier = Modifier,
     restaurantData: HistoryRestaurantData
 ) {
-    val restaurantList = listOf(
-        HistoryRestaurantData(
-            date = "10-4-토",
-            restaurantName = "신전떡볶이 중곡역점",
-            isFavorite = false,
-            orderPrice = 10000,
-            salePrice = 8500,
-            menu = listOf(
-                MenuData(
-                    "1인세트", 1, "떡볶이 1인분, 모듬튀김, 쥬시쿨"
-                )
-            ),
-            isOpened = false,
-            imageId = R.drawable.img_sinjeon
-        ),
-        HistoryRestaurantData(
-            date = "10-3-금",
-            restaurantName = "처갓집양념치킨 중곡역점",
-            isFavorite = false,
-            orderPrice = 24000,
-            salePrice = 20000,
-            menu = listOf(
-                MenuData(
-                    "슈프림양념치킨", 1, "뼈, 토핑떡사리"
-                )
-            ),
-            isOpened = false,
-            imageId = R.drawable.img_cheogajip
-        ),
-        HistoryRestaurantData(
-            date = "9-27-토",
-            restaurantName = "동대문엽기떡볶이 건대점",
-            isFavorite = true,
-            orderPrice = 20700,
-            salePrice = 18500,
-            menu = listOf(
-                MenuData(
-                    "실속세트", 1, "반반, [엽기] 덜매운맛"
-                )
-            ),
-            isOpened = true,
-            imageId = R.drawable.img_yeoptteok
-        ),
-        HistoryRestaurantData(
-            date = "9-22-수",
-            restaurantName = "피자나라치킨공주 건대점",
-            isFavorite = false,
-            orderPrice = 18000,
-            salePrice = 16500,
-            menu = listOf(
-                MenuData(
-                    "2인세트", 1, "콤비네이션, 콜라"
-                )
-            ),
-            isOpened = false,
-            imageId = R.drawable.img_pizza
-        )
-    )
-
     var isFavorite by rememberSaveable { mutableStateOf(restaurantData.isFavorite) }
 
     Column(
@@ -261,13 +202,13 @@ fun HistoryRestaurantItem(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
-                CoupangEatsRoundedButton(Modifier, "바로 주문", CoupangEatsTheme.colors.mint, null)
                 CoupangEatsRoundedButton(
                     Modifier,
                     "같은 메뉴 담기",
                     CoupangEatsTheme.colors.white,
                     CoupangEatsTheme.colors.gray300
                 )
+                CoupangEatsRoundedButton(Modifier, "바로 주문", CoupangEatsTheme.colors.mint, null)
             }
         } else {
             Button(

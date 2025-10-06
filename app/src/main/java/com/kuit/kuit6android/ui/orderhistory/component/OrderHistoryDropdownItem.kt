@@ -1,6 +1,7 @@
 package com.kuit.kuit6android.ui.orderhistory.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -24,11 +25,11 @@ fun OrderHistoryDropdownItem(modifier: Modifier = Modifier, category: String) {
         shape = RoundedCornerShape(20.dp),
         onClick = {},
         colors = ButtonDefaults.buttonColors(containerColor = CoupangEatsTheme.colors.white),
-        border = BorderStroke(1.dp, CoupangEatsTheme.colors.gray300)
+        border = BorderStroke(1.dp, CoupangEatsTheme.colors.gray300) ,
+        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 7.dp),
     ){
         Row(
-            modifier = modifier
-                .padding(start = 11.dp, end = 16.dp),
+            modifier = modifier,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
