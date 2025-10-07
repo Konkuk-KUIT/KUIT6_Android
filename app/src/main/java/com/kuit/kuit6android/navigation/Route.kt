@@ -39,6 +39,9 @@ sealed interface Route {
     data object OrderHistory : Route
 
     @Serializable
+    data object CartPage : Route
+
+    @Serializable
     data object MyEats : Route
 
     @Serializable

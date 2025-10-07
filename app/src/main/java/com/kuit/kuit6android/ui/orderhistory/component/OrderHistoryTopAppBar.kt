@@ -1,5 +1,6 @@
 package com.kuit.kuit6android.ui.orderhistory.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +17,10 @@ import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 
 @Composable
-fun OrderHistoryTopAppBar (modifier: Modifier = Modifier){
+fun OrderHistoryTopAppBar (
+    modifier: Modifier = Modifier,
+    onNavigateToCartPage: () -> Unit
+){
     Row (
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -32,7 +36,8 @@ fun OrderHistoryTopAppBar (modifier: Modifier = Modifier){
             painter = painterResource(R.drawable.ic_shopping_cart),
             contentDescription = "cart",
             modifier = modifier
-                .size(30.dp),
+                .size(30.dp)
+                .clickable { onNavigateToCartPage() },
             tint = CoupangEatsTheme.colors.black
         )
     }
@@ -41,5 +46,5 @@ fun OrderHistoryTopAppBar (modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 private fun OrderHistoryTopAppBarPreview(){
-    OrderHistoryTopAppBar()
+    OrderHistoryTopAppBar(Modifier, { } )
 }

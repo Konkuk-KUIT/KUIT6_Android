@@ -28,7 +28,8 @@ import com.kuit.kuit6android.ui.orderhistory.data.MenuData
 @Composable
 fun OrderHistoryScreen(
     padding: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateToCartPage: () -> Unit
 ) {
     val restaurantList = listOf(
         HistoryRestaurantData(
@@ -96,7 +97,7 @@ fun OrderHistoryScreen(
             )
             .padding(top = 45.dp, bottom = 130.dp)
     ) {
-        OrderHistoryTopAppBar()
+        OrderHistoryTopAppBar(Modifier,onNavigateToCartPage)
         Spacer(modifier = modifier.padding(bottom = 20.dp))
         OrderHistoryTextField()
         Row(
@@ -130,5 +131,5 @@ fun OrderHistoryScreen(
 @Preview(showBackground = true)
 @Composable
 private fun OrderHistoryScreenPreview() {
-    OrderHistoryScreen(PaddingValues())
+    OrderHistoryScreen(PaddingValues(), Modifier,{})
 }
