@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.navigation.Route
 
+//nested
 @Composable
 fun FavoriteRow(
     modifier: Modifier,
@@ -33,7 +34,7 @@ fun FavoriteRow(
             .clickable(
                 onClick = {
                     onNavigateToFavorite(
-                        Route.Favorite
+                        Route.FavoriteToMyEats
                     )
                 }
             ),

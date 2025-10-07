@@ -10,11 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MyEatsNums(modifier: Modifier) {
+fun MyEatsNums(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -45,4 +46,10 @@ fun MyEatsNums(modifier: Modifier) {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun MyEatsNumsPreview() {
+    MyEatsNums()
 }
