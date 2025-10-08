@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.kuit.kuit6android.ui.orderhistory.component.OrderHistoryTopAppBar
 
 @Composable
 fun OrderHistoryScreen(
@@ -17,6 +19,13 @@ fun OrderHistoryScreen(
             padding
         )
     ) {
-        Text("Order History Screen")
+        OrderHistoryTopAppBar()
+
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun OrderHistoryScreenPreview() {
+    OrderHistoryScreen(padding = PaddingValues())
 }
