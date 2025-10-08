@@ -13,20 +13,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.RangeSliderState.Companion.Saver
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -104,7 +108,15 @@ fun CartPage(
         )
     )
 
-    val totalPrice = menuList.sumOf { it.orderPrice }
+    var counts by rememberSaveable(menuList.size) {
+        mutableStateOf(List(menuList.size) { 1 })
+    }
+
+    val totalPrice by remember(counts) {
+        derivedStateOf {
+            menuList.indices.sumOf { i -> counts[i] * menuList[i].orderPrice }
+        }
+    }
 
     Scaffold(
         containerColor = Color.White,
@@ -147,7 +159,7 @@ fun CartPage(
             ) {
                 Column {
                     Text(
-                        text = totalPrice.toDecimalFormat(),
+                        text = totalPrice.toDecimalFormat() + "원",
                         style = CoupangEatsTheme.typography.head_02_B_20,
                         color = CoupangEatsTheme.colors.black
                     )
@@ -213,8 +225,19 @@ fun CartPage(
                         .padding(top = 20.dp)
                 ) {
                     menuList.forEachIndexed { index, menu ->
-                        // 각 아이템 패딩 주고 실제 컴포넌트 렌더
-                        CartMenuItem(menuData = menu)
+                        val key = menu.menuName
+
+                        key(key){
+                            CartMenuItem(
+                                menuData = menu,
+                                count = counts[index],
+                                onCountChange = { newCount ->
+                                    val next = counts.toMutableList()
+                                    next[index] = newCount.coerceAtLeast(0)
+                                    counts = next
+                                }
+                            )
+                        }
 
                         if (index != menuList.lastIndex) {
                             HorizontalDivider(

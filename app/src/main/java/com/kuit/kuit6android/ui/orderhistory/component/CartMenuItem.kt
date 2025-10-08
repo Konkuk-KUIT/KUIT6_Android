@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -35,11 +36,15 @@ import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 
 @Composable
 fun CartMenuItem(
-    modifier: Modifier = Modifier,
-    menuData: CartMenuData
+    menuData: CartMenuData,
+    count: Int,
+    onCountChange: (Int) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column (
-        modifier = modifier.fillMaxWidth().padding(horizontal = 20.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
     ){
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -47,7 +52,9 @@ fun CartMenuItem(
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(15.dp),
-                modifier = modifier.padding(top = 20.dp).weight(1f)
+                modifier = modifier
+                    .padding(top = 20.dp)
+                    .weight(1f)
             ) {
                 Text(
                     text = menuData.menuName,
@@ -74,7 +81,7 @@ fun CartMenuItem(
                         .align(Alignment.End)
                         .size(50.dp)
                         .clip(RoundedCornerShape(10.dp))
-                        .border(1.dp, CoupangEatsTheme.colors.gray200 ,RoundedCornerShape(10.dp)),
+                        .border(1.dp, CoupangEatsTheme.colors.gray200, RoundedCornerShape(10.dp)),
                     painter = painterResource(menuData.imageId),
                     contentDescription = "menu image",
                     contentScale = ContentScale.Crop
@@ -82,7 +89,9 @@ fun CartMenuItem(
             }
         }
         Row(
-            modifier = modifier.fillMaxWidth().padding(top = 15.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(top = 15.dp),
             horizontalArrangement = Arrangement.spacedBy(31.dp),
             verticalAlignment = Alignment.CenterVertically
         ){
@@ -102,7 +111,8 @@ fun CartMenuItem(
                 )
             }
             Row(
-                modifier = modifier.width(89.dp)
+                modifier = modifier
+                    .width(89.dp)
                     .clip(RoundedCornerShape(10.dp))
                     .background(CoupangEatsTheme.colors.white)
                     .border(1.dp, CoupangEatsTheme.colors.gray300, RoundedCornerShape(10.dp))
@@ -117,14 +127,16 @@ fun CartMenuItem(
                     tint = CoupangEatsTheme.colors.black
                 )
                 Text(
-                    text = "1",
+                    text = count.toString(),
                     style = CoupangEatsTheme.typography.caption_01_R_10,
                     color = CoupangEatsTheme.colors.black
                 )
                 Icon(
                     painter = painterResource(R.drawable.ic_add),
                     contentDescription = "add",
-                    modifier = modifier.size(10.dp),
+                    modifier = modifier
+                        .size(10.dp)
+                        .clickable { onCountChange(count + 1) },
                     tint = CoupangEatsTheme.colors.black
                 )
             }
@@ -136,7 +148,6 @@ fun CartMenuItem(
 @Composable
 private fun CartMenuItemPreview() {
     CartMenuItem(
-        Modifier,
         CartMenuData(
             menuName = "BBQ 소스",
             orderPrice = 500,
@@ -147,6 +158,8 @@ private fun CartMenuItemPreview() {
                 )
             ),
             imageId = R.drawable.img_bbq_source
-        )
+        ),
+        1,
+        {}
     )
 }
