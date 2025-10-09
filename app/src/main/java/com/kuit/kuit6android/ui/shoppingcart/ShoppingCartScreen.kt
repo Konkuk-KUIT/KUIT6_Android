@@ -117,21 +117,25 @@ fun ShoppingCartScreen(padding: PaddingValues = PaddingValues(), modifier: Modif
                     )
                 )
             }
+
+            item {
+                ShoppingBottomBar(cart = Cart(
+                    img = R.drawable.storeexample,
+                    name = "홍콩반점",
+                    menu = listOf(
+                        Menu(
+                            name = "떡볶이",
+                            price = 10000,
+                            count = 1,
+                            detail = "맛있는 떡볶이",
+                            img = R.drawable.storeexample
+                        )
+                    )
+                ))
+            }
         }
 
-        ShoppingBottomBar(cart = Cart(
-            img = R.drawable.storeexample,
-            name = "홍콩반점",
-            menu = listOf(
-                Menu(
-                    name = "떡볶이",
-                    price = 10000,
-                    count = 1,
-                    detail = "맛있는 떡볶이",
-                    img = R.drawable.storeexample
-                )
-            )
-        ))
+
     }
 }
 
