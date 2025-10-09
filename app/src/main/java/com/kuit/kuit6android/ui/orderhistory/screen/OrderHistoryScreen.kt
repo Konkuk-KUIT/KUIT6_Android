@@ -28,7 +28,8 @@ import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 @Composable
 fun OrderHistoryScreen(
     padding: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onCartClick: () -> Unit = {}
 ) {
     val historyRestaurantList = remember {
         mutableStateListOf(
@@ -90,7 +91,7 @@ fun OrderHistoryScreen(
                 .padding(horizontal = 20.dp)
                 .padding(top = 20.dp)
         ) {
-            OrderHistoryTopAppBar()
+            OrderHistoryTopAppBar(onCartClick = onCartClick)
             Spacer(modifier = Modifier.padding(top = 20.dp))
             OrderHistoryTextField()
             Spacer(modifier = Modifier.padding(top = 12.dp))
