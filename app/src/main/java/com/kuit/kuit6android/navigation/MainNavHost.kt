@@ -84,7 +84,7 @@ fun MainNavHost(
         }
 
         composable<Route.CartPage> {
-            CartPage()
+            CartPage(navController = navController)
         }
 
         navigation<Route.MyEatsNestedGraphRoute>(

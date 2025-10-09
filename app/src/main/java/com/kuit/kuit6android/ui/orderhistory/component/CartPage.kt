@@ -37,6 +37,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.extension.toDecimalFormat
 import com.kuit.kuit6android.ui.components.CoupangEatsRoundedButton
@@ -48,7 +50,8 @@ import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 
 @Composable
 fun CartPage(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     val menuList = listOf(
         CartMenuData(
@@ -121,63 +124,8 @@ fun CartPage(
     Scaffold(
         containerColor = Color.White,
         modifier = Modifier.fillMaxSize().padding(top = 30.dp ,bottom = 45.dp),
-        topBar = {
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_back_arrow),
-                    contentDescription = "back arrow",
-                    tint = Color(0xFF666668),
-                    modifier = modifier.size(24.dp)
-                )
-                Text(
-                    text = "장바구니",
-                    style = CoupangEatsTheme.typography.head_02_B_20,
-                    color = CoupangEatsTheme.colors.black
-                )
-                Icon(
-                    painter = painterResource(R.drawable.ic_person_add),
-                    contentDescription = "person add",
-                    tint = CoupangEatsTheme.colors.black,
-                    modifier = modifier.size(24.dp)
-                )
-            }
-        },
-        bottomBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(CoupangEatsTheme.colors.gray100)
-                    .padding(vertical = 14.dp, horizontal = 20.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column {
-                    Text(
-                        text = totalPrice.toDecimalFormat() + "원",
-                        style = CoupangEatsTheme.typography.head_02_B_20,
-                        color = CoupangEatsTheme.colors.black
-                    )
-                    Spacer(Modifier.padding(bottom = 5.dp))
-                    Text(
-                        text = "주문 가능",
-                        style = CoupangEatsTheme.typography.body_01_M_14,
-                        color = CoupangEatsTheme.colors.black
-                    )
-                }
-                CoupangEatsRoundedButton(
-                    modifier = Modifier,
-                    "바로 주문",
-                    CoupangEatsTheme.colors.mint,
-                    null
-                )
-            }
-        }
+        topBar = {CartTopAppBar(Modifier, navController)},
+        bottomBar = {CartBottomBar(Modifier, totalPrice)}
     ) { innerPadding ->
         LazyColumn(
             modifier = modifier
@@ -185,36 +133,7 @@ fun CartPage(
                 .padding(innerPadding)
                 .padding(horizontal = 20.dp),
         ) {
-            item {
-                Row(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 23.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        painter = painterResource(R.drawable.img_bbq),
-                        contentDescription = "bbq",
-                        modifier = modifier
-                            .size(30.dp)
-                            .clip(RoundedCornerShape(5.dp)),
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(
-                        text = "BBQ 건대점",
-                        style = CoupangEatsTheme.typography.head_03_B_16,
-                        color = CoupangEatsTheme.colors.black,
-                        modifier = modifier.padding(start = 10.dp)
-                    )
-                    Icon(
-                        painter = painterResource(R.drawable.ic_arrow_right),
-                        contentDescription = "arrow right",
-                        modifier = modifier
-                            .padding(start = 7.dp)
-                            .size(16.dp)
-                    )
-                }
-            }
+            item { RestaurantBar(Modifier, "BBQ 건대점", R.drawable.img_bbq) }
 
             item {
                 Column(
@@ -228,6 +147,7 @@ fun CartPage(
                         val key = menu.menuName
 
                         key(key){
+                            // 내부 컴포넌트 호출
                             CartMenuItem(
                                 menuData = menu,
                                 count = counts[index],
@@ -294,7 +214,7 @@ fun CartPage(
                         .border(1.dp, CoupangEatsTheme.colors.gray300, RoundedCornerShape(20.dp))
                 ) {
                     recommendMenuList.forEachIndexed { index, menu ->
-                        // 각 아이템 패딩 주고 실제 컴포넌트 렌더
+                        // 내부 컴포넌트 호출
                         RecommendMenuItem(recommendMenu = menu)
 
                         if (index != recommendMenuList.lastIndex) {
@@ -308,6 +228,7 @@ fun CartPage(
             }
 
             item {
+                // 가게배달/픽업 선택
                 var selected by rememberSaveable { mutableStateOf(ReceiveMethod.DELIVERY) }
                 Spacer(Modifier.padding(bottom = 20.dp))
                 Text(
@@ -318,6 +239,7 @@ fun CartPage(
                 )
 
                 Spacer(Modifier.padding(bottom = 10.dp))
+                // 내부 컴포넌트 호출
                 ReceiveMethodItem(
                     Modifier,
                     isSelected = (selected == ReceiveMethod.DELIVERY),
@@ -339,74 +261,7 @@ fun CartPage(
                     color = CoupangEatsTheme.colors.black,
                     modifier = modifier.padding(bottom = 10.dp)
                 )
-                Column(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(20.dp))
-                        .border(1.dp, CoupangEatsTheme.colors.gray300, RoundedCornerShape(20.dp))
-                        .padding(vertical = 20.dp)
-                ) {
-                    Row(
-                        modifier = modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 20.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = "메뉴 금액",
-                            style = CoupangEatsTheme.typography.body_02_SB_12,
-                            color = CoupangEatsTheme.colors.black
-                        )
-                        Text(
-                            text = totalPrice.toDecimalFormat() + "원",
-                            style = CoupangEatsTheme.typography.body_02_SB_12,
-                            color = CoupangEatsTheme.colors.black
-                        )
-                    }
-                    Spacer(Modifier.padding(bottom = 10.dp))
-                    Row(
-                        modifier = modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 20.dp)
-                            .padding(bottom = 20.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = "배달팁",
-                            style = CoupangEatsTheme.typography.body_02_SB_12,
-                            color = CoupangEatsTheme.colors.black
-                        )
-                        Text(
-                            text = "0원",
-                            style = CoupangEatsTheme.typography.body_02_SB_12,
-                            color = CoupangEatsTheme.colors.black
-                        )
-                    }
-                    HorizontalDivider(
-                        Modifier.padding(bottom = 15.dp),
-                        1.dp,
-                        CoupangEatsTheme.colors.gray300
-                    )
-                    Row(
-                        modifier = modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 20.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = "결제예정금액",
-                            style = CoupangEatsTheme.typography.head_04_SB_14,
-                            color = CoupangEatsTheme.colors.black
-                        )
-                        Text(
-                            text = totalPrice.toDecimalFormat() + "원",
-                            style = CoupangEatsTheme.typography.head_04_SB_14,
-                            color = CoupangEatsTheme.colors.black
-                        )
-                    }
-                }
+                CheckPriceItem(Modifier, totalPrice, 0)
                 Spacer(Modifier.padding(bottom = 50.dp))
             }
         }
@@ -417,5 +272,6 @@ fun CartPage(
 @Preview(showBackground = true)
 @Composable
 private fun CartPagePreview() {
-    CartPage()
+    val navController = rememberNavController()
+    CartPage(navController = navController)
 }
