@@ -19,6 +19,9 @@ sealed interface Route {
     data object MyEats : Route
 
     @Serializable
+    data object ShoppingCart : Route
+
+    @Serializable
     data class SearchResult(
         val searchKeyword:String,
     ) : Route
