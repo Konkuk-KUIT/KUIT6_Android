@@ -8,10 +8,12 @@ data class HistoryRestaurantData(
     val salePrice: Int,
     val menu: List<MenuData>,
     val isOpened: Boolean,
+    val imageId: Int,
 )
 
 data class MenuData(
     val menuName: String,
     val menuCount: Int,
-    val menuDetail: String
+    val menuDetail: String,
+    val imageId: Int,
 )

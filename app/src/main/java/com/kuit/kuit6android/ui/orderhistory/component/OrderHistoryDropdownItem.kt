@@ -2,6 +2,7 @@ package com.kuit.kuit6android.ui.orderhistory.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ import com.kuit.kuit6android.ui.theme.defaultCoupangEatsColors
 fun OrderHistoryDropdownItem(modifier: Modifier = Modifier, category: String) {
     Button(
         shape = RoundedCornerShape(20.dp),
+        contentPadding = PaddingValues(0.dp),
         onClick = {},
         colors = ButtonDefaults.buttonColors(
             containerColor = CoupangEatsTheme.colors.white,
