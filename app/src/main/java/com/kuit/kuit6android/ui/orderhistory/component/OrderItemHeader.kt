@@ -37,9 +37,9 @@ fun OrderItemHeader(
             Text(
                 text = "주문상세",
                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 8.dp),
-                style = CoupangEatsTheme.typography.body_02_R_12,
+                style = CoupangEatsTheme.typography.body_02_SB_12,
                 color = CoupangEatsTheme.colors.black,
-                fontWeight = CoupangEatsTheme.typography.body_02_R_12.fontWeight
+                fontWeight = CoupangEatsTheme.typography.body_02_SB_12.fontWeight
             )
         }
     }
