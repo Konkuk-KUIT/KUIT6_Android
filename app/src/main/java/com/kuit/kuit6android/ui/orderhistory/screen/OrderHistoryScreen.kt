@@ -40,7 +40,7 @@ fun OrderHistoryScreen(
                 orderPrice = 10000,
                 salePrice = 8500,
                 menu = listOf(
-                    MenuData("1인세트", 1, "떡볶이 1인분, 모듬튀김, 쥬시쿨", imageId = R.drawable.img_shinjeon)
+                    MenuData("1인세트", 1, "떡볶이 1인분, 모듬튀김, 쥬시쿨")
                 ),
                 isOpened = false,
                 imageId = R.drawable.img_shinjeon
@@ -52,7 +52,7 @@ fun OrderHistoryScreen(
                 orderPrice = 24000,
                 salePrice = 20000,
                 menu = listOf(
-                    MenuData("슈프림양념치킨", 1, "뼈, 토핑떡사리", imageId = R.drawable.img_ch_chicken)
+                    MenuData("슈프림양념치킨", 1, "뼈, 토핑떡사리")
                 ),
                 isOpened = false,
                 imageId = R.drawable.img_ch_chicken
@@ -64,7 +64,7 @@ fun OrderHistoryScreen(
                 orderPrice = 20700,
                 salePrice = 18500,
                 menu = listOf(
-                    MenuData("실속세트", 1, "반반, [엽기] 덜매운맛", imageId = R.drawable.img_yeopddeok)
+                    MenuData("실속세트", 1, "반반, [엽기] 덜매운맛")
                 ),
                 isOpened = true,
                 imageId = R.drawable.img_yeopddeok
@@ -76,7 +76,7 @@ fun OrderHistoryScreen(
                 orderPrice = 30300,
                 salePrice = 28300,
                 menu = listOf(
-                    MenuData("갈릭스테이크피치세트", 1, "스테이크피자, 순살 쉬림프 치킨", imageId = R.drawable.img_pncg)
+                    MenuData("갈릭스테이크피치세트", 1, "스테이크피자, 순살 쉬림프 치킨")
                 ),
                 isOpened = true,
                 imageId = R.drawable.img_pncg

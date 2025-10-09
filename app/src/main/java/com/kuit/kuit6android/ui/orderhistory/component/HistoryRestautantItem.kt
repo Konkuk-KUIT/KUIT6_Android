@@ -247,7 +247,7 @@ private fun HistoryRestaurantItemPreview() {
             orderPrice = 10000,
             salePrice = 8500,
             menu = listOf(
-                MenuData("1인세트", 1, "떡볶이 1인분, 모듬튀김, 쥬시쿨", imageId = R.drawable.img_opoke)
+                MenuData("1인세트", 1, "떡볶이 1인분, 모듬튀김, 쥬시쿨")
             ),
             isOpened = true,
             imageId = R.drawable.img_opoke

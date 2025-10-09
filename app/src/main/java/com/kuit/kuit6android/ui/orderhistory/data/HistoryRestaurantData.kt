@@ -15,5 +15,4 @@ data class MenuData(
     val menuName: String,
     val menuCount: Int,
     val menuDetail: String,
-    val imageId: Int,
 )
