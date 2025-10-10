@@ -1,5 +1,6 @@
 package com.kuit.kuit6android.navigation
 
+import ShoppingCartScreen
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -14,7 +15,6 @@ import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
 import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
-import com.kuit.kuit6android.ui.shoppingcart.screen.ShoppingCartScreen
 
 @Composable
 fun MainNavHost(
@@ -81,3 +81,4 @@ fun MainNavHost(
         }
     }
 }
+

@@ -2,6 +2,7 @@ package com.kuit.kuit6android.ui.components
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ fun CoupangEatsRoundedButton(modifier: Modifier = Modifier) {
             .width(131.dp)
             .height(43.dp),
         onClick = {onClick("")},
+        shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = CoupangEatsTheme.colors.mint,
             contentColor = CoupangEatsTheme.colors.black

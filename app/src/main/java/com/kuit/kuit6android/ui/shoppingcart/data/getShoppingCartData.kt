@@ -52,3 +52,9 @@ fun getShoppingCartData(): List<ShoppingCartData> {
         )
     )
 }
+
+fun getShoppingCartTotalCost(): Int {
+    return getShoppingCartData().sumOf { cart ->
+        cart.itemList.sumOf { it.cost }
+    }
+}

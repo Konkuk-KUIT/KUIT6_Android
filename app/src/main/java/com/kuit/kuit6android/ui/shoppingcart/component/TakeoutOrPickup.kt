@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 
@@ -27,6 +26,7 @@ fun TakeoutOrPickup(modifier: Modifier = Modifier) {
     Column (
         modifier= modifier
             .fillMaxWidth()
+            .padding(horizontal = 20.dp)
     ){
         Column (
             modifier= modifier
@@ -81,8 +81,3 @@ fun TakeoutOrPickup(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun TakeoutPreview() {
-    TakeoutOrPickup(modifier= Modifier)
-}

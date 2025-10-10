@@ -24,10 +24,10 @@ fun OrderHistoryDropdownItem(modifier: Modifier = Modifier, category: String) {
             shape = RoundedCornerShape(20.dp),
             onClick ={ /**/},
             border = BorderStroke(1.dp, CoupangEatsTheme.colors.gray300),
-            colors = ButtonDefaults.buttonColors(      // ✅ 여기 추가
+            colors = ButtonDefaults.buttonColors(      // 여기 추가
                 containerColor = CoupangEatsTheme.colors.white,  // 배경색 (버튼 바탕)
                 contentColor = CoupangEatsTheme.colors.black      // 내부 텍스트/아이콘 색
-            ),
+            )
         ){
             Row(
                 verticalAlignment = Alignment.CenterVertically

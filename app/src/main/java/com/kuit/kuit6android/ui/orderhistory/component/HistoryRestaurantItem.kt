@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.kuit.kuit6android.R
 import com.kuit.kuit6android.extension.toDateFormat
 import com.kuit.kuit6android.extension.toDecimalFormat
+import com.kuit.kuit6android.ui.components.CoupangEatsRoundedButton
 import com.kuit.kuit6android.ui.orderhistory.data.HistoryRestaurantData
 import com.kuit.kuit6android.ui.orderhistory.data.MenuData
 import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
@@ -42,8 +43,11 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
 
     Column(
         modifier = modifier
+            .width(320.dp)
+            .height(354.dp)
             .fillMaxWidth()
-            .padding(20.dp)
+            .border(width=1.dp, color= CoupangEatsTheme.colors.gray300, shape= RoundedCornerShape(10.dp))
+            .padding(start=20.dp, top= 20.dp, end=20.dp, bottom= 18.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -68,7 +72,6 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
                 )
             }
         }
-        // 2) 가게 이름
         Row(
             modifier = Modifier
                 .padding(top = 23.dp),
@@ -94,7 +97,6 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
                 modifier = Modifier
                     .size(14.11.dp)
             )
-
             Spacer(modifier = Modifier.width(38.66.dp))
             Icon(
                 painter = painterResource(
@@ -109,7 +111,6 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
 
         Spacer(Modifier.height(15.dp))
 
-        // 3) 메뉴 목록 (간단 라벨 형태)
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -142,7 +143,6 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
             }
         }
 
-        // 5) 구분선
         Spacer(Modifier.height(17.dp))
         HorizontalDivider(
             thickness = 1.dp,
@@ -151,7 +151,6 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
 
         Spacer(Modifier.height(20.dp))
 
-        // 6) 결제 금액
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -173,11 +172,17 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
             )
         }
 
-        // 7) 할인 금액(있을 때만)
+        Spacer(modifier= modifier.height(20.dp))
         if (restaurantData.salePrice < restaurantData.orderPrice) {
-            Spacer(Modifier.height(4.dp))
             Row(
-
+                modifier= modifier
+                    .align(Alignment.End)
+                    .height(28.dp)
+                    .width(174.73.dp)
+                    .clip(shape= RoundedCornerShape(20.dp))
+                    .background(color= CoupangEatsTheme.colors.laverder)
+                    .padding(start=14.22.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     painter = painterResource(R.drawable.vector),
@@ -186,11 +191,12 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
                         .width(10.16.dp)
                         .height(10.dp)
                 )
+                Spacer(modifier= modifier.width(4.06.dp))
                 Text(
                     text = "${
                         (restaurantData.orderPrice - restaurantData.salePrice).coerceAtLeast(0)
                             .toDecimalFormat()
-                    }원",
+                    }원 할인이 적용됐어요",
                     style = CoupangEatsTheme.typography.body_02_SB_12,
                     color = CoupangEatsTheme.colors.purple
                 )
@@ -199,26 +205,38 @@ fun HistoryRestaurantItem(modifier: Modifier = Modifier, restaurantData: History
 
         // 8) 하단 정보 컬럼 (필요한 추가 라인들 넣기)
         Spacer(Modifier.height(8.dp))
-        Column (
-            modifier= modifier
-                .width(279.37.dp)
-                .height(57.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .border(1.dp, color= CoupangEatsTheme.colors.gray300),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ){
-            Text(
-                "같은 메뉴 담기",
-                style = CoupangEatsTheme.typography.head_02_B_20,
-                color = CoupangEatsTheme.colors.gray300
-            )
+        if (isFavorite) {
+            Spacer(Modifier.height(8.dp))
+            Row(
+            ){
+                SameMenuCart()
+                Spacer(modifier=modifier.width(18.dp))
+                CoupangEatsRoundedButton()
+            }
+        }
+        else {
+            Spacer(Modifier.height(8.dp))
+            Column(
+                modifier = modifier
+                    .width(279.37.dp)
+                    .height(57.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .border(1.dp, color = CoupangEatsTheme.colors.gray300),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    "같은 메뉴 담기",
+                    style = CoupangEatsTheme.typography.head_02_B_20,
+                    color = CoupangEatsTheme.colors.gray300
+                )
 
-            Text(
-                "오픈 전 담기",
-                style = CoupangEatsTheme.typography.head_05_B_10,
-                color = CoupangEatsTheme.colors.gray300
-            )
+                Text(
+                    "오픈 전 담기",
+                    style = CoupangEatsTheme.typography.head_05_B_10,
+                    color = CoupangEatsTheme.colors.gray300
+                )
+            }
         }
     }
 }
