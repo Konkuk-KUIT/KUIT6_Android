@@ -11,6 +11,11 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,6 +39,11 @@ fun CartScreen(
     padding: PaddingValues,
     onBackClick: (() -> Unit)? = null
 ) {
+
+    val menuCounts = rememberSaveable {
+        mutableStateListOf(1, 1, 1)
+    }
+
     val restaurantData = CartRestaurantData(
         restaurantName = "BBQ 건대점",
         deliveryFee = 0,
@@ -41,21 +51,21 @@ fun CartScreen(
             MenuData(
                 "BBQ 소스",
                 500,
-                1,
+                menuCounts[0],
                 listOf("소스 선택 : BBQ양념치킨소스(25g)"),
                 R.drawable.img_bbq_sauce
             ),
             MenuData(
                 "황금올리브치킨",
                 24000,
-                1,
+                menuCounts[1],
                 listOf("음료 추가선택 : 서비스 음료 미제공"),
                 R.drawable.img_bbq_h_o
             ),
             MenuData(
                 "[황.양.반] 황올 반+양념 반",
                 24000,
-                1,
+                menuCounts[2],
                 listOf("음료 추가선택 : 코카콜라"),
                 R.drawable.img_bbq_ho_seasoned_coke
             )
@@ -92,9 +102,12 @@ fun CartScreen(
     Scaffold(
         containerColor = CoupangEatsTheme.colors.white,
         topBar = {
-            CartTopBar(onBackClick = onBackClick,
-                modifier = Modifier.statusBarsPadding()
-                    .padding(horizontal = 20.dp))
+            CartTopBar(
+                onBackClick = onBackClick,
+                modifier = Modifier
+                    .statusBarsPadding()
+                    .padding(horizontal = 20.dp)
+            )
         },
         bottomBar = {
             CartBottomBar(
@@ -116,7 +129,9 @@ fun CartScreen(
             item {
                 CartMenusCard(
                     restaurantData = restaurantData,
-                    onIncrease = {} // !!!
+                    onIncrease = { index ->
+                        menuCounts[index] = menuCounts[index] + 1
+                    } // !!!
                 )
             }
             item {

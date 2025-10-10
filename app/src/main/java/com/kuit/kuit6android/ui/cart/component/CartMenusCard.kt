@@ -31,7 +31,7 @@ import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 fun CartMenusCard(
     modifier: Modifier = Modifier,
     restaurantData: CartRestaurantData,
-    onIncrease: () -> Unit,
+    onIncrease: (Int) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -48,7 +48,7 @@ fun CartMenusCard(
 
             CartMenuItem(
                 cartMenuData = menuData,
-                onIncrease = onIncrease,
+                onIncrease = {onIncrease(index)},
                 modifier = Modifier
                     .padding(top = 20.dp)
                     .padding(horizontal = 20.dp)

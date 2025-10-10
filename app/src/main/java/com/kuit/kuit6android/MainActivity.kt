@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
                     containerColor = Color.White,
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
-
                         BottomNavBar(
                             visible = currentTab != null,
                             tabs = NavTab.entries,
