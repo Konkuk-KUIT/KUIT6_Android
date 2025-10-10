@@ -29,5 +29,9 @@ sealed interface Route {
 
     @Serializable
     data object MyEatsNestedGraphRoute : Route
+
+    @Serializable
+    data object cart : Route
+
 }
 
