@@ -54,18 +54,20 @@ fun AddedItemsCard(
                 )
 
                 if (index < items.size - 1) {
-                    Spacer(modifier = Modifier.height(20.dp))
-                    HorizontalDivider(color = CoupangEatsTheme.colors.gray200)
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(height = 5.dp))
+                    HorizontalDivider(
+                        thickness = 1.dp,
+                        color = CoupangEatsTheme.colors.gray300,
+                        modifier = modifier.padding(horizontal = 20.dp)
+                    )
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(height = 5.dp))
             HorizontalDivider(
                 thickness = 1.dp,
-                color = CoupangEatsTheme.colors.gray300
+                color = CoupangEatsTheme.colors.gray300,
             )
-            Spacer(modifier = Modifier.height(16.dp))
 
             // 메뉴 추가 버튼
             MenuAddButton(onClick = onMenuAddClick)

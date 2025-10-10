@@ -1,7 +1,8 @@
 package com.kuit.kuit6android.ui.cart.component.addeditems
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,12 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,10 +26,6 @@ import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.cart.model.CartItem
 import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
-import com.kuit.kuit6android.ui.theme.LocalCoupangEatsColors
-import com.kuit.kuit6android.ui.theme.LocalCoupangEatsTypography
-import com.kuit.kuit6android.ui.theme.defaultCoupangEatsColors
-import com.kuit.kuit6android.ui.theme.defaultCoupangEatsTypography
 
 @Composable
 fun AddedItemRow(
@@ -85,8 +80,8 @@ fun AddedItemRow(
 
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(end = 20.dp),
+                .fillMaxWidth(),
+//                .padding(end = 20.dp),
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -95,65 +90,51 @@ fun AddedItemRow(
                 onOptionsClick = onOptionsClick
             )
             Spacer(modifier = Modifier.width(width = 31.dp))
+
             // 수량 조절 버튼
             Row(
-                modifier = modifier,
+                modifier = modifier
+                    .border(
+                        width = 1.dp,
+                        color = CoupangEatsTheme.colors.gray300,
+                        shape = RoundedCornerShape(size = 10.dp)
+                    )
+                    .padding(all = 10.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                horizontalArrangement = Arrangement.spacedBy(space = 22.dp)
             ) {
                 val quantity = item.quantity
-                val onQuantityChange = onQuantityChange
-                // 마이너스 버튼
-                IconButton(
-                    onClick = {
-                        if (quantity > 1) {
-                            onQuantityChange(quantity - 1)
-                        }
-                    },
+
+                // 쓰레기통 버튼
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_delete),
+                    contentDescription = "감소",
+                    tint = CoupangEatsTheme.colors.gray400,
                     modifier = Modifier
-                        .size(32.dp)
-                        .background(
-                            color = CoupangEatsTheme.colors.gray200,
-                            shape = RoundedCornerShape(8.dp)
-                        ),
-                    enabled = quantity > 1
-                ) {
-                    Text(
-                        text = "−",
-                        style = CoupangEatsTheme.typography.head_03_B_16,
-                        color = if (quantity > 1) CoupangEatsTheme.colors.black
-                        else CoupangEatsTheme.colors.gray400
-                    )
-                }
+                        .size(size = 10.dp)
+                        .clickable {
+                            if (quantity > 1) {
+                                onQuantityChange(quantity - 1)
+                            }
+                        }
+                )
 
                 // 수량
                 Text(
                     text = quantity.toString(),
-                    style = CoupangEatsTheme.typography.head_03_B_16,
-                    color = CoupangEatsTheme.colors.black,
-                    modifier = Modifier.widthIn(min = 20.dp)
+                    style = CoupangEatsTheme.typography.body_01_M_14,
                 )
 
                 // 플러스 버튼
-                IconButton(
-                    onClick = {
-                        onQuantityChange(quantity + 1)
-                    },
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_plus),
+                    contentDescription = "증가",
+                    tint = CoupangEatsTheme.colors.black,
                     modifier = Modifier
-                        .size(32.dp)
-                        .background(
-                            color = CoupangEatsTheme.colors.mint,
-                            shape = RoundedCornerShape(8.dp)
-                        )
-                ) {
-                    Text(
-                        text = "+",
-                        style = CoupangEatsTheme.typography.head_03_B_16,
-                        color = CoupangEatsTheme.colors.black
-                    )
-                }
+                        .size(size = 10.dp)
+                        .clickable { onQuantityChange(quantity + 1) }
+                )
             }
-
         }
     }
 }
@@ -162,22 +143,16 @@ fun AddedItemRow(
 @Composable
 fun AddedItemRowPreview() {
     KUIT6_ANDROIDTheme {
-        // CompositionLocalProvider 추가
-        CompositionLocalProvider(
-            LocalCoupangEatsColors provides defaultCoupangEatsColors,
-            LocalCoupangEatsTypography provides defaultCoupangEatsTypography
-        ) {
-            AddedItemRow(
-                item = CartItem(
-                    id = 1,
-                    name = "황금올리브치킨",
-                    price = 24000,
-                    quantity = 1,
-                    options = "옵션 추가(선택) : 세라노 칠리 마요소스"
-                ),
-                onQuantityChange = {},
-                onOptionsClick = {}
-            )
-        }
+        AddedItemRow(
+            item = CartItem(
+                id = 1,
+                name = "황금올리브치킨",
+                price = 24000,
+                quantity = 1,
+                options = "옵션 추가(선택) : 세라노 칠리 마요소스"
+            ),
+            onQuantityChange = {},
+            onOptionsClick = {}
+        )
     }
 }
