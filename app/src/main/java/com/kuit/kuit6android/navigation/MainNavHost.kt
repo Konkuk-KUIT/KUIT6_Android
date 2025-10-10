@@ -84,27 +84,13 @@ fun MainNavHost(
             DetailInfo(restaurantInfo = restaurant, navController = navController)
         }
 
-        navigation<Route.OrderHistoryNestedGraphRoute>(
-            startDestination = Route.OrderHistory
-        ){
-            composable<Route.OrderHistory> {
-                OrderHistoryScreen(
-                    padding = padding,
-                    restaurantList = listOf(
-                        HistoryRestaurantData(
-                            date = "10-4-토",
-                            isFavorite = true,
-                            restaurantName = "신전떡볶이 중곡역점",
-                            orderPrice = 10000,
-                            salePrice = 2000,
-                            menu = listOf(
-                                MenuData("1인세트",1,"떡볶이 1인분, 모듬튀김, 쥬시쿨")
-                            ),
-                            isClosed = true,
-                        )
-                    )
-                )
-            }
+        composable<Route.OrderHistory> {
+            OrderHistoryScreen(
+                padding = padding,
+                onNavigateToCart = {
+                    navController.navigate(Route.Cart)
+                }
+            )
         }
 
         navigation<Route.MyEatsNestedGraphRoute>(

@@ -33,7 +33,7 @@ sealed interface Route {
     data object OrderHistory : Route
 
     @Serializable
-    data object OrderHistoryNestedGraphRoute : Route
+    data object Cart: Route
 
     @Serializable
     data object MyEats : Route

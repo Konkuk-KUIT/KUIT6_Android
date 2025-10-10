@@ -7,7 +7,8 @@ data class HistoryRestaurantData(
     val orderPrice : Int,
     val salePrice : Int,
     val menu : List<MenuData>,
-    val isClosed : Boolean
+    val isClosed : Boolean,
+    val imageId : Int
 )
 
 data class MenuData(
