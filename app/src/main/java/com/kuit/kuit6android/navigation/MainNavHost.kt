@@ -13,7 +13,7 @@ import com.kuit.kuit6android.ui.favorite.screen.MyEatsFavorite
 import com.kuit.kuit6android.ui.home.data.StoreData
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
-import com.kuit.kuit6android.ui.orderhistory.component.CartPage
+import com.kuit.kuit6android.ui.orderhistory.screen.CartPage
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
 import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen

@@ -131,6 +131,8 @@ fun CartMenuItem(
                     style = CoupangEatsTheme.typography.caption_01_R_10,
                     color = CoupangEatsTheme.colors.black
                 )
+
+                // State Less: 콜백 함수
                 Icon(
                     painter = painterResource(R.drawable.ic_add),
                     contentDescription = "add",

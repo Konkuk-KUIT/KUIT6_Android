@@ -1,7 +1,5 @@
-package com.kuit.kuit6android.ui.orderhistory.component
+package com.kuit.kuit6android.ui.orderhistory.screen
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,33 +13,33 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.RangeSliderState.Companion.Saver
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.R
-import com.kuit.kuit6android.extension.toDecimalFormat
-import com.kuit.kuit6android.ui.components.CoupangEatsRoundedButton
+import com.kuit.kuit6android.ui.orderhistory.component.CartBottomBar
+import com.kuit.kuit6android.ui.orderhistory.component.CartMenuItem
+import com.kuit.kuit6android.ui.orderhistory.component.CartTopAppBar
+import com.kuit.kuit6android.ui.orderhistory.component.CheckPriceItem
+import com.kuit.kuit6android.ui.orderhistory.component.ReceiveMethodItem
+import com.kuit.kuit6android.ui.orderhistory.component.RecommendMenuItem
+import com.kuit.kuit6android.ui.orderhistory.component.RestaurantBar
 import com.kuit.kuit6android.ui.orderhistory.data.CartMenuData
 import com.kuit.kuit6android.ui.orderhistory.data.CartRecommendMenuData
 import com.kuit.kuit6android.ui.orderhistory.data.OptionData
@@ -111,7 +109,8 @@ fun CartPage(
         )
     )
 
-    var counts by rememberSaveable(menuList.size) {
+    // State Hoisting: 상위 컴포넌트 상태 관리
+    var counts by rememberSaveable {
         mutableStateOf(List(menuList.size) { 1 })
     }
 
@@ -123,9 +122,9 @@ fun CartPage(
 
     Scaffold(
         containerColor = Color.White,
-        modifier = Modifier.fillMaxSize().padding(top = 30.dp ,bottom = 45.dp),
-        topBar = {CartTopAppBar(Modifier, navController)},
-        bottomBar = {CartBottomBar(Modifier, totalPrice)}
+        modifier = Modifier.fillMaxSize().padding(top = 30.dp),
+        topBar = { CartTopAppBar(Modifier, navController) },
+        bottomBar = { CartBottomBar(Modifier, totalPrice) }
     ) { innerPadding ->
         LazyColumn(
             modifier = modifier
@@ -135,6 +134,7 @@ fun CartPage(
         ) {
             item { RestaurantBar(Modifier, "BBQ 건대점", R.drawable.img_bbq) }
 
+            // 메뉴
             item {
                 Column(
                     modifier = Modifier
@@ -147,10 +147,11 @@ fun CartPage(
                         val key = menu.menuName
 
                         key(key){
-                            // 내부 컴포넌트 호출
+                            // 내부 컴포넌트 호출 (onChange 함수 전달)
                             CartMenuItem(
                                 menuData = menu,
                                 count = counts[index],
+                                // 콜백 함수 전달
                                 onCountChange = { newCount ->
                                     val next = counts.toMutableList()
                                     next[index] = newCount.coerceAtLeast(0)
@@ -161,9 +162,7 @@ fun CartPage(
 
                         if (index != menuList.lastIndex) {
                             HorizontalDivider(
-                                modifier = Modifier
-                                    .padding(top = 25.dp)
-                                    .padding(horizontal = 20.dp),
+                                modifier = Modifier.padding(top = 25.dp).padding(horizontal = 20.dp),
                                 thickness = 1.dp,
                                 color = CoupangEatsTheme.colors.gray300
                             )
@@ -199,6 +198,7 @@ fun CartPage(
                 }
             }
 
+            // 추천 메뉴
             item {
                 Spacer(Modifier.padding(top = 20.dp))
                 Text(
@@ -227,6 +227,7 @@ fun CartPage(
                 }
             }
 
+            // 수령 방법 선택
             item {
                 // 가게배달/픽업 선택
                 var selected by rememberSaveable { mutableStateOf(ReceiveMethod.DELIVERY) }
@@ -253,6 +254,7 @@ fun CartPage(
                     onClick = { selected = ReceiveMethod.PICKUP })
             }
 
+            // 결제금액확인
             item {
                 Spacer(Modifier.padding(top = 20.dp))
                 Text(
