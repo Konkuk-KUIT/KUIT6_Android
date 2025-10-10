@@ -41,7 +41,7 @@ fun ChargeComponent(cart: Cart, modifier: Modifier = Modifier) {
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(top = 10.dp)
         ) {
             Text(
                 text = "배달 팁",

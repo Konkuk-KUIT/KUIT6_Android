@@ -24,7 +24,6 @@ fun ShoppingBottomBar(cart: Cart, modifier: Modifier = Modifier){
     Row(
         modifier
             .fillMaxWidth()
-            .height(70.dp)
             .background(
                 color = CoupangEatsTheme.colors.gray100
             ).padding(horizontal = 20.dp).padding(vertical = 15.dp),
