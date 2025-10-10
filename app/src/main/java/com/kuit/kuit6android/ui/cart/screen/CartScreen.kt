@@ -3,10 +3,13 @@ package com.kuit.kuit6android.ui.cart.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,12 +23,13 @@ import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.ui.cart.component.CartTopAppBar
 import com.kuit.kuit6android.ui.cart.component.GotoOrderRow
 import com.kuit.kuit6android.ui.cart.component.PickupMethodCard
-import com.kuit.kuit6android.ui.cart.component.RecommendCard
 import com.kuit.kuit6android.ui.cart.component.StoreDetailRow
 import com.kuit.kuit6android.ui.cart.component.TotalAmountCard
 import com.kuit.kuit6android.ui.cart.component.addeditems.AddedItemsCard
+import com.kuit.kuit6android.ui.cart.component.recommended.RecommendCard
 import com.kuit.kuit6android.ui.cart.data.CartSampleData
 import com.kuit.kuit6android.ui.cart.model.CartItem
+import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
 
 @Composable
@@ -65,7 +69,7 @@ fun CartScreen(
             contentPadding = PaddingValues(vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(space = 8.dp)
         ) {
-            // Store Detail Row
+            // 가게 상세정보 바로가기
             item {
                 StoreDetailRow(
                     storeName = storeName,
@@ -73,7 +77,7 @@ fun CartScreen(
                 )
             }
 
-            // Added Items Card
+            // 담긴 물건들
             item {
                 AddedItemsCard(
                     items = cartItems,
@@ -91,8 +95,15 @@ fun CartScreen(
                 )
             }
 
-            // Recommend Card
+            // 함께 먹으면 좋아요
             item {
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "함께 먹으면 좋아요",
+                    style = CoupangEatsTheme.typography.head_03_B_16,
+                    color = CoupangEatsTheme.colors.black
+                )
+                Spacer(modifier = Modifier.height(16.dp))
                 RecommendCard(
                     items = recommendedItems,
                     onAddClick = { recommendedItem ->

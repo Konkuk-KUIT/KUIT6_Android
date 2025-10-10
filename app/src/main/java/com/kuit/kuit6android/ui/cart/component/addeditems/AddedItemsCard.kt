@@ -93,7 +93,7 @@ fun AddedItemsCardPreview() {
                     name = "황금올리브치킨",
                     price = 24000,
                     quantity = 2,
-                    options = "옵션 추가(선택) : 세라노 칠리 마요소스"
+                    options = "옵션 추가(선택) : 칠리 마요소스"
                 )
             ),
             onQuantityChange = { _, _ -> },
