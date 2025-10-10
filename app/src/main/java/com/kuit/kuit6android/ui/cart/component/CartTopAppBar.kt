@@ -43,8 +43,7 @@ fun CartTopAppBar(
 
         Text(
             text = "장바구니",
-            style = CoupangEatsTheme.typography.head_02_B_20,
-            color = CoupangEatsTheme.colors.black
+            style = CoupangEatsTheme.typography.head_02_B_20
         )
 
         IconButton(onClick = onProfileClick) {
