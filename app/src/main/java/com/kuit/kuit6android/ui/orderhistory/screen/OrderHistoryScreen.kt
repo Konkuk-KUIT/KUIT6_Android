@@ -29,6 +29,7 @@ import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
 @Composable
 fun OrderHistoryScreen(
     padding: PaddingValues,
+    onCartClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val orderItems = remember { OrderHistorySampleData.sampleOrderItems }
@@ -41,7 +42,9 @@ fun OrderHistoryScreen(
             .background(CoupangEatsTheme.colors.white)
     ) {
         //주문내역 & 장바구니
-        OrderHistoryTopBar()
+        OrderHistoryTopBar(
+            onCartClick = onCartClick
+        )
         //검색창
         OrderHistorySearchBar(
             value = searchQuery,
