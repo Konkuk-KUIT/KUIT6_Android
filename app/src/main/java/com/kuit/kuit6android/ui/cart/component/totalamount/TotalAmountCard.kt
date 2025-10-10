@@ -2,9 +2,7 @@ package com.kuit.kuit6android.ui.cart.component.totalamount
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -39,18 +37,13 @@ fun TotalAmountCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(all = 20.dp)
         ) {
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // 메뉴 금액
+            // 메뉴 금액, 배달 팁
             DetailedTotalRow(
                 menuAmount = menuPrice,
                 deliverAmount = deliveryFee
             )
-
-            Spacer(modifier = Modifier.height(16.dp))
         }
         HorizontalDivider(color = CoupangEatsTheme.colors.gray300)
         Column(
@@ -58,8 +51,6 @@ fun TotalAmountCard(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
-
             // 결제예정금액
             TotalResultRow(
                 totalAmount = totalAmount

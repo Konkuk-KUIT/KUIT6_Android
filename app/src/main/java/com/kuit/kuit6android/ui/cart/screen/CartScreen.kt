@@ -21,9 +21,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.ui.cart.component.CartTopAppBar
-import com.kuit.kuit6android.ui.cart.component.GotoOrderRow
 import com.kuit.kuit6android.ui.cart.component.StoreDetailRow
 import com.kuit.kuit6android.ui.cart.component.addeditems.AddedItemsCard
+import com.kuit.kuit6android.ui.cart.component.order.GotoOrderRow
 import com.kuit.kuit6android.ui.cart.component.pickup.PickupMethodCard
 import com.kuit.kuit6android.ui.cart.component.recommended.RecommendCard
 import com.kuit.kuit6android.ui.cart.component.totalamount.TotalAmountCard
@@ -148,16 +148,19 @@ fun CartScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp)
                 ) {
+                    Spacer(modifier = Modifier.height(height = 20.dp))
                     Text(
                         text = "결제금액을 확인해주세요",
                         style = CoupangEatsTheme.typography.head_03_B_16,
                         color = CoupangEatsTheme.colors.black
                     )
+                    Spacer(modifier = Modifier.height(height = 10.dp))
                     TotalAmountCard(
                         menuPrice = totalMenuPrice,
                         deliveryFee = deliveryFee,
                         totalAmount = totalAmount
                     )
+                    Spacer(modifier = Modifier.height(height = 66.dp))
                 }
             }
         }
