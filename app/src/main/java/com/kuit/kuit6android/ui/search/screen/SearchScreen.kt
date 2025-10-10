@@ -1,5 +1,6 @@
 package com.kuit.kuit6android.ui.search.screen
 
+import android.R.attr.padding
 import androidx.benchmark.traceprocessor.Row
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -50,37 +51,39 @@ fun SearchScreen(
             .padding(horizontal = 20.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        SearchBar("검색어를 입력해주세요")
-        Row(
-            modifier = modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
-        ) {
-            Image(painter = painterResource(
-                id = R.drawable.ic_search
-            ),
-                contentDescription = "뒤로가기 화살표",
-            )
-            Box(modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .clip(shape = RoundedCornerShape(100.dp))
-                .border(width = 0.5.dp,color = Color.LightGray, shape = RoundedCornerShape(100.dp))
-            ){
-                Text("검색어를 입력해주세요",
-                    modifier.padding(vertical = 12.dp, horizontal = 20.dp),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Normal
-                )
-            }
+        SearchBar(
+            "검색어를 입력해주세요"
+              )
+//        Row(
+//            modifier = modifier.fillMaxWidth(),
+//            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.spacedBy(10.dp)
+//        ) {
+//            Image(painter = painterResource(
+//                id = R.drawable.ic_search
+//            ),
+//                contentDescription = "뒤로가기 화살표",
+//            )
+//            Box(modifier = Modifier
+//                .weight(1f)
+//                .fillMaxWidth()
+//                .clip(shape = RoundedCornerShape(100.dp))
+//                .border(width = 0.5.dp, color = Color.LightGray, shape = RoundedCornerShape(100.dp))
+//            ){
+//                Text("검색어를 입력해주세요",
+//                    modifier.padding(vertical = 12.dp, horizontal = 20.dp),
+//                    fontSize = 14.sp,
+//                    fontWeight = FontWeight.Normal
+//                )
+//            }
 
-            Icon(
-                painter = painterResource(
-                    id = R.drawable.ic_search
-                ),
-                contentDescription = "검색"
-            )
-        }
+//            Icon(
+//                painter = painterResource(
+//                    id = R.drawable.ic_search
+//                ),
+//                contentDescription = "검색"
+//            )
+//        }
 
         Row (
             modifier = Modifier
@@ -124,3 +127,14 @@ fun SearchScreen(
     }
 }
 
+@Preview
+@Composable
+private fun SearchScreenPre() {
+    SearchScreen(
+        padding = PaddingValues(0.dp),
+        onNavigateSearchResult = { keyword ->
+            // 미리보기에서는 아무 동작 안 해도 OK
+            println("검색어 클릭됨: $keyword")
+        }
+    )
+}

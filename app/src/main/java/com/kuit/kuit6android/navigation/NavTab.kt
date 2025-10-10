@@ -15,7 +15,7 @@ enum class NavTab (
     SEARCH(
         icon = R.drawable.ic_search,
         label = "검색",
-        route = Route.Search,
+        route = Route.SearchNestedGraphRoute,
     ),
     FAVORITE(
         icon = R.drawable.ic_favorite,

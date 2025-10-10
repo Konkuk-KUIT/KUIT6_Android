@@ -51,20 +51,38 @@ fun MainNavHost(
             }
         }
 
-        composable<Route.Favorite> {
-            FavoriteScreen(
-                padding = padding,
-            )
+        navigation<Route.SearchNestedGraphRoute>(
+            startDestination = Route.MyEats
+        ){
+            composable<Route.MyEats> {
+                MyEatsScreen(
+                    padding = padding,
+                    navController = navController
+                )
+            }
+            composable<Route.Favorite> {
+                FavoriteScreen(
+                    padding = padding,
+                    navController = navController
+                )
+            }
+            composable<Route.FavoriteLook> {
+                FavoriteLook(
+                    padding = padding,
+                )
+            }
         }
+
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
                 padding = padding,
             )
         }
-        composable<Route.MyEats> {
-            MyEatsScreen(
-                padding = padding,
-            )
-        }
+
     }
+}
+
+@Composable
+fun FavoriteLook(padding: PaddingValues) {
+    TODO("Not yet implemented")
 }

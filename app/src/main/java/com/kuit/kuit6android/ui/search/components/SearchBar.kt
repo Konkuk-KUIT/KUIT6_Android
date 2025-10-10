@@ -25,24 +25,28 @@ import androidx.compose.ui.unit.sp
 import com.kuit.kuit6android.R
 
 @Composable
-fun SearchBar(text:String, modifier: Modifier = Modifier) {
+fun SearchBar(text:String,
+              modifier: Modifier = Modifier) {
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Image(painter = painterResource(
-            id = R.drawable.ic_search
-        ),
+        Image(
+            painter = painterResource(
+                id = R.drawable.icon_24_back_grey
+            ),
             contentDescription = "뒤로가기 화살표",
         )
-        Box(modifier = Modifier
-            .weight(1f)
-            .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(100.dp))
-            .border(width = 0.5.dp,color = Color.LightGray, shape = RoundedCornerShape(100.dp))
-        ){
-            Text( text,
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .clip(shape = RoundedCornerShape(100.dp))
+                .border(width = 0.5.dp, color = Color.LightGray, shape = RoundedCornerShape(100.dp))
+        ) {
+            Text(
+                text,
                 modifier.padding(vertical = 12.dp, horizontal = 20.dp),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Normal
@@ -57,41 +61,4 @@ fun SearchBar(text:String, modifier: Modifier = Modifier) {
         )
     }
 
-    Row (
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 35.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ){
-        Text(
-            text = "인기 검색어", fontSize = 16.sp, fontWeight = FontWeight.Bold,color = Color.Black
-        )
-        Text(text = "오후 5:59 업데이트", fontSize = 16.sp, fontWeight = FontWeight.Light,color = Color.Black)
-    }
-    val foodRanking = listOf(
-        "떡볶이","치킨","버거","마라탕","김밥","초밥","피자","곱창","샐러드","닭발"
-    )
-
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(20.dp)
-    ) {
-        itemsIndexed(foodRanking){ index,item ->
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .clickable(onClick = {}),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ){
-                Text(
-                    text = "${index+1}",
-                    color = if(index+1<= 3) Color.Blue else Color.Black,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Text(text = "$item", color = Color.Black)
-            }
-
-        }
-    }
 }
