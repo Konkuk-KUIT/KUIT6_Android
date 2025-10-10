@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -42,14 +41,14 @@ fun FreeDeliveryBanner(
                     horizontal = 42.dp
                 ),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.food_delivery_ticket_invoice),
                 contentDescription = null,
-                modifier = Modifier.size(24.dp),
                 tint = CoupangEatsTheme.colors.black
             )
+            Spacer(Modifier.width(width = 3.dp))
             Text(
                 "지금 주문하면 ",
                 style = CoupangEatsTheme.typography.head_04_SB_14,
@@ -62,11 +61,9 @@ fun FreeDeliveryBanner(
                 color = Color.Blue,
                 fontWeight = CoupangEatsTheme.typography.head_04_SB_14.fontWeight
             )
-            Spacer(Modifier.width(5.dp))
             Icon(
-                painter = painterResource(id = android.R.drawable.ic_menu_more),
+                painter = painterResource(id = R.drawable.rightarrow),
                 contentDescription = null,
-                modifier = Modifier.size(20.dp),
                 tint = CoupangEatsTheme.colors.black
             )
         }

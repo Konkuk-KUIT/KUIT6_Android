@@ -1,5 +1,6 @@
 package com.kuit.kuit6android.ui.orderhistory.data
 
+import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.orderhistory.model.OrderItem
 
 object OrderHistorySampleData {
@@ -14,7 +15,7 @@ object OrderHistorySampleData {
             originalPrice = 10000,
             finalPrice = 8500,
             couponDiscount = 1500,
-            imageRes = 0
+            imageRes = R.drawable.wifehousechicken
         ),
         OrderItem(
             date = "10월 3일(금)",
@@ -26,7 +27,7 @@ object OrderHistorySampleData {
             originalPrice = 24000,
             finalPrice = 20000,
             couponDiscount = 4000,
-            imageRes = 0
+            imageRes = R.drawable.wifehousechicken
         ),
         OrderItem(
             date = "9월 27일(토)",
@@ -38,7 +39,7 @@ object OrderHistorySampleData {
             originalPrice = 20700,
             finalPrice = 18500,
             couponDiscount = 2200,
-            imageRes = 0,
+            imageRes = R.drawable.wifehousechicken,
             isFavorite = true
         ),
         OrderItem(
@@ -51,7 +52,7 @@ object OrderHistorySampleData {
             originalPrice = 10000,
             finalPrice = 8500,
             couponDiscount = 1500,
-            imageRes = 0,
+            imageRes = R.drawable.wifehousechicken,
             isFavorite = false,
             isStoreOpen = false
         )

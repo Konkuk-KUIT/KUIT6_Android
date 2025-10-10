@@ -77,7 +77,8 @@ fun OrderItemActions(
                     contentColor = CoupangEatsTheme.colors.gray400
                 ),
                 border = BorderStroke(1.dp, CoupangEatsTheme.colors.gray300),
-                enabled = false
+                enabled = false,
+                shape = RoundedCornerShape(size = 10.dp)
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
