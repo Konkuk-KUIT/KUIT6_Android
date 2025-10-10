@@ -13,6 +13,8 @@ import com.kuit.kuit6android.ui.favorite.screen.MyEatFavorite
 import com.kuit.kuit6android.ui.home.data.RestaurantData
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
+import com.kuit.kuit6android.ui.orderhistory.HistoryRestaurantData
+import com.kuit.kuit6android.ui.orderhistory.MenuData
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
 import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
@@ -82,10 +84,27 @@ fun MainNavHost(
             DetailInfo(restaurantInfo = restaurant, navController = navController)
         }
 
-        composable<Route.OrderHistory> {
-            OrderHistoryScreen(
-                padding = padding,
-            )
+        navigation<Route.OrderHistoryNestedGraphRoute>(
+            startDestination = Route.OrderHistory
+        ){
+            composable<Route.OrderHistory> {
+                OrderHistoryScreen(
+                    padding = padding,
+                    restaurantList = listOf(
+                        HistoryRestaurantData(
+                            date = "10-4-토",
+                            isFavorite = true,
+                            restaurantName = "신전떡볶이 중곡역점",
+                            orderPrice = 10000,
+                            salePrice = 2000,
+                            menu = listOf(
+                                MenuData("1인세트",1,"떡볶이 1인분, 모듬튀김, 쥬시쿨")
+                            ),
+                            isClosed = true,
+                        )
+                    )
+                )
+            }
         }
 
         navigation<Route.MyEatsNestedGraphRoute>(
