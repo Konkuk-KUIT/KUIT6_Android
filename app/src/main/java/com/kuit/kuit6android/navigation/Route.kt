@@ -17,5 +17,8 @@ sealed interface Route {
 
     @Serializable
     data object MyEats : Route
+
+    @Serializable
+    data object ShoppingCart : Route
 }
 
