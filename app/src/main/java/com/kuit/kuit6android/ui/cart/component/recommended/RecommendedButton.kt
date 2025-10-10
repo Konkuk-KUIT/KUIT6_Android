@@ -1,42 +1,48 @@
 package com.kuit.kuit6android.ui.cart.component.recommended
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
-import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
 
 @Composable
 fun RecommendedAddButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    IconButton(
-        onClick = onClick,
+    Box(
         modifier = modifier
-            .size(32.dp)
-            .background(
-                color = CoupangEatsTheme.colors.white,
-                shape = RoundedCornerShape(8.dp)
+            .size(
+                size = 30.dp
+            )
+            .border(
+                width = 1.dp,
+                color = CoupangEatsTheme.colors.gray300,
+                shape = RoundedCornerShape(size = 27.dp)
+            )
+//            .clip(
+//                shape = RoundedCornerShape(size = 27.dp)
+//            )
+            .clickable(
+                onClick = onClick
             ),
-        colors = IconButtonDefaults.iconButtonColors(
-            containerColor = CoupangEatsTheme.colors.white
-        )
+        contentAlignment = Alignment.Center
     ) {
         Icon(
-            imageVector = Icons.Default.Add,
+            painter = painterResource(id = R.drawable.recommended_add),
             contentDescription = "추가",
-            tint = CoupangEatsTheme.colors.black,
-            modifier = Modifier.size(20.dp)
+            modifier = Modifier
+                .size(size = 15.dp)
         )
     }
 }
@@ -44,7 +50,5 @@ fun RecommendedAddButton(
 @Preview(showBackground = true)
 @Composable
 fun RecommendedAddButtonPreview() {
-    KUIT6_ANDROIDTheme {
-        RecommendedAddButton(onClick = {})
-    }
+    RecommendedAddButton(onClick = {})
 }

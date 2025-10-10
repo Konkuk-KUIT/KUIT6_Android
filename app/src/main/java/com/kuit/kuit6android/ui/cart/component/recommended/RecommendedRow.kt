@@ -1,8 +1,7 @@
 package com.kuit.kuit6android.ui.cart.component.recommended
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,8 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kuit.kuit6android.R
 import com.kuit.kuit6android.ui.cart.model.RecommendedItem
 import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
 import com.kuit.kuit6android.ui.theme.KUIT6_ANDROIDTheme
@@ -36,12 +38,13 @@ fun RecommendedRow(
             modifier = Modifier.weight(1f)
         ) {
             // 이미지 영역
-            Box(
+            Image(
+                painter = painterResource(id = R.drawable.recommended_sample1),
+                contentDescription = "추천 메뉴 이미지",
                 modifier = Modifier
-                    .size(48.dp)
-                    .background(
-                        color = CoupangEatsTheme.colors.gray200,
-                        shape = RoundedCornerShape(8.dp)
+                    .size(size = 50.dp)
+                    .clip(
+                        shape = RoundedCornerShape(size = 10.dp)
                     )
             )
 

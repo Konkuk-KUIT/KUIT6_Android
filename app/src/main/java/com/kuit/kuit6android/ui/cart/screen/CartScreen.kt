@@ -3,6 +3,7 @@ package com.kuit.kuit6android.ui.cart.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,10 +23,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.ui.cart.component.CartTopAppBar
 import com.kuit.kuit6android.ui.cart.component.GotoOrderRow
-import com.kuit.kuit6android.ui.cart.component.PickupMethodCard
 import com.kuit.kuit6android.ui.cart.component.StoreDetailRow
 import com.kuit.kuit6android.ui.cart.component.TotalAmountCard
 import com.kuit.kuit6android.ui.cart.component.addeditems.AddedItemsCard
+import com.kuit.kuit6android.ui.cart.component.pickup.PickupMethodCard
 import com.kuit.kuit6android.ui.cart.component.recommended.RecommendCard
 import com.kuit.kuit6android.ui.cart.data.CartSampleData
 import com.kuit.kuit6android.ui.cart.model.CartItem
@@ -98,11 +99,17 @@ fun CartScreen(
             // 함께 먹으면 좋아요
             item {
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "함께 먹으면 좋아요",
-                    style = CoupangEatsTheme.typography.head_03_B_16,
-                    color = CoupangEatsTheme.colors.black
-                )
+                Row(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp),
+                ) {
+
+                    Text(
+                        text = "함께 먹으면 좋아요",
+                        style = CoupangEatsTheme.typography.head_03_B_16,
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
                 RecommendCard(
                     items = recommendedItems,
@@ -119,12 +126,20 @@ fun CartScreen(
                 )
             }
 
-            // Pickup Method Card
+            // 수령방법을 선택해주세요
             item {
-                PickupMethodCard(
-                    method = "가게배달",
-                    estimatedTime = "22~37분 후 도착"
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                ) {
+                    Text(
+                        text = "수령방법을 선택해주세요",
+                        style = CoupangEatsTheme.typography.head_03_B_16,
+                        color = CoupangEatsTheme.colors.black
+                    )
+                    PickupMethodCard()
+                }
             }
 
             // Total Amount Card

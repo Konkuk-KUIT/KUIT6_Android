@@ -27,7 +27,7 @@ object CartSampleData {
                 name = "황금올리브+생맥주 반",
                 price = 24000,
                 quantity = 1,
-                options = "옵션 추가(선택) : 포카칩비"
+                options = "옵션 추가(선택) : 포카칩"
             )
         )
     )
@@ -45,12 +45,12 @@ object CartSampleData {
         ),
         RecommendedItem(
             id = 3,
-            name = "BBQ 먹태어",
+            name = "BBQ 먹태",
             price = 6000
         ),
         RecommendedItem(
             id = 4,
-            name = "BBQ콜(도우)",
+            name = "BBQ콜팝",
             price = 5000
         )
     )
