@@ -1,6 +1,5 @@
 package com.kuit.kuit6android.ui.cart.screen
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -24,10 +23,10 @@ import androidx.navigation.compose.rememberNavController
 import com.kuit.kuit6android.ui.cart.component.CartTopAppBar
 import com.kuit.kuit6android.ui.cart.component.GotoOrderRow
 import com.kuit.kuit6android.ui.cart.component.StoreDetailRow
-import com.kuit.kuit6android.ui.cart.component.TotalAmountCard
 import com.kuit.kuit6android.ui.cart.component.addeditems.AddedItemsCard
 import com.kuit.kuit6android.ui.cart.component.pickup.PickupMethodCard
 import com.kuit.kuit6android.ui.cart.component.recommended.RecommendCard
+import com.kuit.kuit6android.ui.cart.component.totalamount.TotalAmountCard
 import com.kuit.kuit6android.ui.cart.data.CartSampleData
 import com.kuit.kuit6android.ui.cart.model.CartItem
 import com.kuit.kuit6android.ui.theme.CoupangEatsTheme
@@ -68,7 +67,6 @@ fun CartScreen(
                 .weight(weight = 1f)
                 .fillMaxWidth(),
             contentPadding = PaddingValues(vertical = 8.dp),
-            verticalArrangement = Arrangement.spacedBy(space = 8.dp)
         ) {
             // 가게 상세정보 바로가기
             item {
@@ -133,6 +131,7 @@ fun CartScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp)
                 ) {
+                    Spacer(modifier = modifier.height(height = 20.dp))
                     Text(
                         text = "수령방법을 선택해주세요",
                         style = CoupangEatsTheme.typography.head_03_B_16,
@@ -142,13 +141,24 @@ fun CartScreen(
                 }
             }
 
-            // Total Amount Card
+            // 결제금액을 확인해주세요
             item {
-                TotalAmountCard(
-                    menuPrice = totalMenuPrice,
-                    deliveryFee = deliveryFee,
-                    totalAmount = totalAmount
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                ) {
+                    Text(
+                        text = "결제금액을 확인해주세요",
+                        style = CoupangEatsTheme.typography.head_03_B_16,
+                        color = CoupangEatsTheme.colors.black
+                    )
+                    TotalAmountCard(
+                        menuPrice = totalMenuPrice,
+                        deliveryFee = deliveryFee,
+                        totalAmount = totalAmount
+                    )
+                }
             }
         }
 
