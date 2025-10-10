@@ -16,6 +16,7 @@ sealed interface Route {
 
     @Serializable
     data object SearchNestedGraphRoute : Route
+
     @Serializable
     data object Favorite : Route
 
@@ -27,5 +28,8 @@ sealed interface Route {
 
     @Serializable
     data object MyEats : Route
+
+    @Serializable
+    data object ShoppingCart : Route
 }
 

@@ -14,6 +14,7 @@ import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
 import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
+import com.kuit.kuit6android.ui.shoppingcart.screen.ShoppingCartScreen
 
 @Composable
 fun MainNavHost(
@@ -48,14 +49,12 @@ fun MainNavHost(
                 )
             }
         }
-
         composable<Route.Favorite> {
             FavoriteScreen(
                 padding = padding,
                 navController = navController
             )
         }
-
         composable<Route.StoreDetail> { backStackEntry ->
             val args = backStackEntry.toRoute<Route.StoreDetail>()
             DetailScreen(
@@ -63,11 +62,10 @@ fun MainNavHost(
                 navController= navController
             )
         }
-
-
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
                 padding = padding,
+                navController = navController
             )
         }
         composable<Route.MyEats> {
@@ -75,6 +73,11 @@ fun MainNavHost(
                 padding = padding,
                 navController = navController
             )
+        }
+        composable<Route.ShoppingCart> {
+            ShoppingCartScreen(
+            )
+
         }
     }
 }

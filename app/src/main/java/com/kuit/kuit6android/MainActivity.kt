@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             KUIT6_ANDROIDTheme {
                 val navController = rememberNavController()
-
                 val currentDestination = navController.currentBackStackEntryAsState().value?.destination
                 val currentTab: NavTab? = NavTab.entries.find{tab -> currentDestination ?.hasRoute(route = tab.route:: class) == true}
 
