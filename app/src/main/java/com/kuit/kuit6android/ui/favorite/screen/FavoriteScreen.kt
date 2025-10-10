@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun FavoriteScreen(
@@ -19,4 +20,10 @@ fun FavoriteScreen(
     ) {
         Text("Favorite Screen")
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun FavoriteScreenPreview() {
+    FavoriteScreen(padding = PaddingValues())
 }

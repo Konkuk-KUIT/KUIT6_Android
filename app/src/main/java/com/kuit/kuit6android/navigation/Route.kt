@@ -10,12 +10,44 @@ sealed interface Route {
     data object Search : Route
 
     @Serializable
+    data class SearchResult(
+        val searchKeyword: String,
+    ) : Route
+
+    // Navigation Graph를 그룹으로 묶는 역할
+    @Serializable
+    data object SearchNestedGraphRoute : Route
+
+    @Serializable
     data object Favorite : Route
+
+    // 데이터를 담고 이동해야 하는 라우트
+    @Serializable
+    data class DetailPage(
+        val imageId : Int,
+        val name : String,
+        val deliveryTime : Int,
+        val score : Double,
+        val reviewCount : String
+    ) : Route
+
+
+    @Serializable
+    data object FavoriteNestedGraphRoute : Route
 
     @Serializable
     data object OrderHistory : Route
 
     @Serializable
+    data object CartPage : Route
+
+    @Serializable
     data object MyEats : Route
+
+    @Serializable
+    data object MyEatsFavorite : Route
+
+    @Serializable
+    data object MyEatsNestedGraphRoute : Route
 }
 
