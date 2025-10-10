@@ -1,14 +1,19 @@
 package com.kuit.kuit6android.navigation
 
+import ShoppingCartScreen
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
+import androidx.navigation.toRoute
+import com.kuit.kuit6android.ui.favorite.screen.DetailScreen
 import com.kuit.kuit6android.ui.favorite.screen.FavoriteScreen
 import com.kuit.kuit6android.ui.home.screen.HomeScreen
 import com.kuit.kuit6android.ui.myeats.screen.MyEatsScreen
 import com.kuit.kuit6android.ui.orderhistory.screen.OrderHistoryScreen
+import com.kuit.kuit6android.ui.search.screen.SearchResultScreen
 import com.kuit.kuit6android.ui.search.screen.SearchScreen
 
 @Composable
@@ -25,25 +30,55 @@ fun MainNavHost(
                 padding = padding,
             )
         }
-        composable<Route.Search> {
-            SearchScreen(
-                padding = padding,
-            )
+        navigation<Route.SearchNestedGraphRoute>(
+            startDestination = Route.Search
+        ) {
+            composable<Route.Search> {
+                SearchScreen(
+                    padding = padding,
+                    onNavigateToSearchResult = {
+                        navController.navigate(Route.SearchResult(searchKeyword = it))
+                    }
+                )
+            }
+            composable<Route.SearchResult> { navBackStackEntry ->
+                val keyword = navBackStackEntry.toRoute<Route.SearchResult>().searchKeyword
+                SearchResultScreen(
+                    padding = padding,
+                    searchKeyWord = keyword
+                )
+            }
         }
         composable<Route.Favorite> {
             FavoriteScreen(
                 padding = padding,
+                navController = navController
+            )
+        }
+        composable<Route.StoreDetail> { backStackEntry ->
+            val args = backStackEntry.toRoute<Route.StoreDetail>()
+            DetailScreen(
+                storeName = args.storeName,
+                navController= navController
             )
         }
         composable<Route.OrderHistory> {
             OrderHistoryScreen(
                 padding = padding,
+                navController = navController
             )
         }
         composable<Route.MyEats> {
             MyEatsScreen(
                 padding = padding,
+                navController = navController
             )
+        }
+        composable<Route.ShoppingCart> {
+            ShoppingCartScreen(
+            )
+
         }
     }
 }
+
