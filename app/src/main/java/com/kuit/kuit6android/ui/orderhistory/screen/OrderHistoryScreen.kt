@@ -92,7 +92,7 @@ fun OrderHistoryScreen(
             .padding(horizontal = 20.dp)
             .padding(top = 20.dp)
     ) {
-        OrderHistoryTopAppBar()
+        OrderHistoryTopAppBar(Modifier,onNavigateToCart)
         Spacer(modifier = Modifier.height(25.dp))
         OrderHistoryTextField()
         Row(
