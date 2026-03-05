@@ -56,7 +56,7 @@ fun GetCouponItem(modifier: Modifier = Modifier) {
                 text = "적용 가능",
                 modifier = modifier.padding(start = 2.dp, end = 43.dp),
                 color = Color(color = 0xFFFDFFFF),
-                fontSize = 12.sp
+                fontSize = 12.sp,
             )
         }
         item {
